@@ -24,9 +24,10 @@
             <div class="card-header bg-blue">
               <h5 class="text-white m-b-0">Edit Department</h5>
             </div>
-            <div class="card-body">
-              {{-- @csrf --}}
-              <form name="dptform" id="dptform" method="post">
+            <div class="card-body">              
+              <form name="dptform" id="dptform" method="post" action="{{ route('department.update',$deptname->id)}}">
+                @csrf
+                @method('PUT')
                 <span id="err_msg"></span>
                 <span id="success-msg"></span>
                 <div class="form-group">                

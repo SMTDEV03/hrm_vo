@@ -80,10 +80,7 @@ class DepartmentController extends Controller
     {
   
         $allDepart   = department::all();
-        $deptname    = department::findOrFail($id);
-
-        $deptname->department_name  = trim($deptname->department_name);
-        $save = $deptname->update();       
+        $deptname    = department::findOrFail($id);              
         return view('pages.editdepartment',compact('allDepart','deptname'));
     }
 
@@ -96,7 +93,13 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $deptname                   = department::find($id);
+        $deptname->department_name  = trim($request->department_name);
+        $save = $deptname->save();     
+
+        if($save){
+            return redirect()->back();
+        }
     }
 
     /**
