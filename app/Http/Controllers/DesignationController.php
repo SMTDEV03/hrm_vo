@@ -77,11 +77,13 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        $getall         = designation::all();
-        /*$deptname       = designation::findOrFail($id);
-        $getall->des_name  = trim($getall->des_name);
-        $save = $deptname->update();*/       
-        return view('pages.editdesignation',compact('getall'));
+        $getall             = designation::all();
+        $dsgname            = designation::findOrFail($id);
+        // /*dd($dsgname);
+        // die;*/
+        // $dsgname->des_name   = trim($dsgname->des_name);
+        // $save = $dsgname->update();     
+        return view('pages.editdesignation',compact('getall','dsgname'));
     }
 
     /**
@@ -93,7 +95,14 @@ class DesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dsgname            = designation::find($id);
+        $dsgname->des_name   = $request->department_name;
+        $save = $dsgname->save();     
+
+        if($save){
+            return redirect()->back();
+        }
+       
     }
 
     /**

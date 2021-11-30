@@ -1,9 +1,6 @@
 @extends('layout.master')
 @section('title', 'Home')
 @section('content')
-
-
-
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
@@ -29,13 +26,15 @@
             </div>
             <div class="card-body">
               {{-- @csrf --}}
-              <form name="dptform" id="dptform" method="post">
+              <form name="dptform" id="dptform" method="post" action="{{ route('designation.update',$dsgname->id)}}">
+                @csrf
+                @method('PUT')
                 <span id="err_msg"></span>
                 <span id="success-msg"></span>
                 <div class="form-group">                
                   <label for="exampleInputEmail1">Edit Designation</label>
-                  <input type="text" class="form-control" name="department_name" id="depart_name" value="{{trim($getall->des_name)}}">
-                  <input type="hidden" name="dept_id" value="{{trim($getall->id)}}">
+                  <input type="text" class="form-control" name="department_name" id="depart_name" value="{{trim($dsgname->des_name)}}">
+                  <input type="hidden" name="dept_id" value="{{trim($dsgname->id)}}">
                 </div>
                 <button type="submit" class="btn btn-info" name="submit" value="submit" id="add_depart">Update</button>
               </form>
@@ -56,12 +55,12 @@
                 @php 
                   $sr = 1;                      
                   @endphp
-                  @foreach ( $getall as $Departinfo ) 
+                  @foreach ($getall as $Departinfo ) 
                   <tr>
                     <td>{{$sr}}</td>
-                    <td>{{ $Departinfo->des_name }}</td>
+                    <td>{{$Departinfo->des_name}}</td>
                     <td>
-                      <a class="btn btn-primary" href="{{route('department.edit',$Departinfo->id) }}">Edit</a>
+                      <a class="btn btn-primary" href="{{route('designation.edit',$Departinfo->id) }}">Edit</a>
                       <!--<a href="#" class="text-center" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                       <a href="#" class="text-center" title="Delete" style="margin-left:10px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>-->
                     </td>                      

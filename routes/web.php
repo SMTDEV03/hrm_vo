@@ -35,10 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     // admin routes
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
         Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
-        Route::get('/employeeList', [HomeController::class, 'employeeList'])->name('pages.employeeList');
-        // Route::get('/department', [DepartmentController::class, 'index'])->name('pages.department');
-        // Route::post('/add_department', [DepartmentController::class, 'store'])->name('add_department');
-        // Route::post('/edit_department', [DepartmentController::class, 'edit'])->name('pages.editdepartment');
+        Route::get('/employeeList', [HomeController::class, 'employeeList'])->name('pages.employeeList');       
         Route::resource('department', DepartmentController::class);
         Route::resource('designation', DesignationController::class);
     });
