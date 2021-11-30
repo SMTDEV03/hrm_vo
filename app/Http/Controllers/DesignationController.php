@@ -77,11 +77,15 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getall         = designation::all();
+        /*$deptname       = designation::findOrFail($id);
+        $getall->des_name  = trim($getall->des_name);
+        $save = $deptname->update();*/       
+        return view('pages.editdesignation',compact('getall'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
