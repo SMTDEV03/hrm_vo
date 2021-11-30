@@ -61,7 +61,7 @@
                     <td>
                       <a class="btn btn-primary" href="{{route('department.edit',$Departinfo->id) }}">Edit</a>
                       <!--<a href="#" class="text-center" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <a href="#" class="text-center" title="Delete" style="margin-left:10px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>-->
+                      <a href="#" class="text-center" title="Delete" style="margin-left:10px;"><i class="fa fa-trash-o" aria-hidden="true"></i></a>--> 
                     </td>                      
                   </tr>
                 @php 

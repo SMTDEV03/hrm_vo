@@ -95,8 +95,7 @@ class DepartmentController extends Controller
     {
         $deptname                   = department::find($id);
         $deptname->department_name  = trim($request->department_name);
-        $save = $deptname->save();     
-
+        $save = $deptname->save();
         if($save){
             return redirect()->back();
         }
