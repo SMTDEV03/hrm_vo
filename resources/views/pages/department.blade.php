@@ -59,7 +59,10 @@
                     <td>{{$sr}}</td>
                     <td>{{ $Departinfo->department_name }}</td>
                     <td>
-                      <a class="btn btn-primary" href="{{route('department.edit',$Departinfo->id) }}">Edit</a>                      
+                      <a class="btn btn-primary" href="{{route('department.edit',$Departinfo->id) }}">Edit</a> 
+                      <form method="post" action="{{route('department.destroy',$Departinfo->id) }}" style="
+                        display: inline;">@csrf @method('delete')<button class="btn btn-primary" type="submit">Delete</button>  
+                    </form>                   
                     </td>                      
                   </tr>
                 @php 

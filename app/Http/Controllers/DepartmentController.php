@@ -27,7 +27,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -109,7 +109,11 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $depart     = department::destroy($id);
+        if($depart){
+            return redirect()->back();
+        }
+
     }
     
 }
