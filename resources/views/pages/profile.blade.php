@@ -4,6 +4,8 @@
 
   @foreach ($profiledata as $profileinfo)
 
+  <?php //dd($profileinfo);?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
@@ -81,6 +83,7 @@
             <fieldset class="form-group">
               <label>Department</label>
               <select name="department" id="department" class="form-control">
+                <option value="">Select Department</option>
                 @foreach ($allDepart as $allDepart)                 
                 <option value='{{$allDepart->id }}' @if ($profileinfo->department == $allDepart->id) {{ 'selected' }}@endif>{{ $allDepart->department_name }}</option>                
                 @endforeach
@@ -91,8 +94,9 @@
             <fieldset class="form-group">
               <label>Designation</label>
               <select name="designation" id="designation" class="form-control">
-                @foreach ($allDesignation as $allDesignation)                 
-                <option value='{{$allDesignation->id }}' @if ($profileinfo->designation == $allDesignation->id) {{ 'selected' }}@endif>{{ $allDesignation->des_name }}</option>                
+                <option value="">Select Designation</option>
+                @foreach ($allDesignation as $allDesignation)               
+                <option value="{{ $allDesignation->id }}" {{$profileinfo->designation == $allDesignation->id  ? 'selected' : ''}}>{{ $allDesignation->des_name}}</option>                
                 @endforeach
               </select>              
             </fieldset>
