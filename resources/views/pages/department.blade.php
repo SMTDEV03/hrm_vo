@@ -28,7 +28,6 @@
               {{-- @csrf --}}
               <form name="dptform" id="dptform" method="post">
                 @csrf
-
                 <span id="err_msg"></span>
                 <span id="success-msg"></span>
                 <div class="form-group">                
@@ -39,8 +38,14 @@
               </form>
             </div>
           </div>
-        </div>
+        </div>       
         <div class="col-lg-6">
+         
+          @if(Session::get('success'))   
+          <div class="alert alert-info" role="alert">   
+          {{ Session::get('success' )}}  
+          </div>    
+          @endif
           <div class="table-responsive">
             <table class="table">
               <thead class="thead-dark">
@@ -101,9 +106,6 @@
             $('#err_msg').text('Please Enter Department Name');
             return false;
         }
-
-        console.log(depatname);
-
         $.ajax({            
             type: 'POST',
             url: "{{ route('department.store') }}",
@@ -114,13 +116,13 @@
                 setTimeout(function () { 
                   $('#success-msg').text('');
                   location.reload();
-                }, 3000);
+                }, 1000);
               }else if(response==='Already'){
                   $('#success-msg').text('Department already exist ! Please Try Another');
                   setTimeout(function () { 
                     $('#success-msg').text('');
                     location.reload();
-                  }, 3000);
+                  }, 1000);
               }
                 //alert(data);
                 //return false;                
@@ -128,6 +130,10 @@
         });
         return false;       
     });
-  })
+  }) 
+  setTimeout(function(){
+      $("div.alert").remove();
+  }, 2000 ); // 5 secs
+  
 </script>
 @endsection

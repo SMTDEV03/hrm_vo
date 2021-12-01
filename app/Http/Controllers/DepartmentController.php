@@ -97,7 +97,8 @@ class DepartmentController extends Controller
         $deptname->department_name  = trim($request->department_name);
         $save = $deptname->save();
         if($save){
-            return redirect()->back();
+            //return redirect()->back();
+            return redirect('/admin/department');
         }
     }
 
@@ -111,7 +112,7 @@ class DepartmentController extends Controller
     {
         $depart     = department::destroy($id);
         if($depart){
-            return redirect()->back();
+            return redirect()->back()->withSuccess('Department Delete Successfully');
         }
 
     }

@@ -109,6 +109,9 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $designation     = designation::destroy($id);
+        if($designation){
+            return redirect()->back()->withSuccess('Designation Delete Successfully');
+        }
     }
 }

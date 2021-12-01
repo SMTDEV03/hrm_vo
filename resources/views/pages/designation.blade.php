@@ -41,6 +41,11 @@
           </div>
         </div>
         <div class="col-lg-6">
+          @if(Session::get('success'))   
+          <div class="alert alert-info" role="alert">   
+          {{ Session::get('success' )}}  
+          </div>
+          @endif 
           <div class="table-responsive">
             <table class="table">
               <thead class="thead-dark">
@@ -60,6 +65,8 @@
                     <td>{{ $Desginfo->des_name }}</td>
                     <td>              
                       <a class="btn btn-primary" href="{{route('designation.edit',$Desginfo->id) }}">Edit</a>
+                      <form method="post" action="{{route('designation.destroy',$Desginfo->id) }}" style="
+                        display: inline;">@csrf @method('delete')<button class="btn btn-primary" type="submit">Delete</button>
                     </td>                      
                   </tr>
                 @php 
@@ -98,9 +105,6 @@
             $('#err_msg').text('Please Enter Designation');
             return false;
         }
-
-        console.log(dsgName);
-
         $.ajax({            
             type: 'POST',
             url: "{{ route('designation.store') }}",
@@ -111,13 +115,13 @@
                 setTimeout(function () { 
                   $('#success-msg').text('');
                   location.reload();
-                }, 3000);
+                }, 1000);
               }else if(response==='Already'){
                   $('#success-msg').text('Designation already exist ! Please Try Another');
                   setTimeout(function () { 
                     $('#success-msg').text('');
                     location.reload();
-                  }, 3000);
+                  }, 2000);
               }
                 //alert(data);
                 //return false;                
@@ -126,5 +130,8 @@
         return false;       
     });
   })
+  setTimeout(function(){
+      $("div.alert").remove();
+  }, 2000 ); // 5 secs
 </script>
 @endsection
