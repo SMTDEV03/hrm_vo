@@ -59,10 +59,7 @@ a:hover, a:active, a:focus {
                     <td>{{ $Leaveinfo->name }}</td>
                     <td>{{ $Leaveinfo->leave_days }}</td>
                     <td>
-                      <a class="btn btn-primary" href="{{route('department.edit',$Leaveinfo->id) }}">Edit</a> 
-                      <form method="post" action="{{route('department.destroy',$Leaveinfo->id) }}" style="
-                        display: inline;">@csrf @method('delete')<button class="btn btn-primary" type="submit">Delete</button>  
-                    </form>                   
+                      <a href="" title="Edit" class="btn btn-primary leave_type" data-id="<?php echo $Leaveinfo->id; ?>"><i class="fa fa-pencil-square-o"></i>Edit</a>                      
                     </td>                      
                   </tr>
                 @php 
@@ -87,17 +84,7 @@ a:hover, a:active, a:focus {
           <div class="modal-header">
               <h4 class="modal-title" id="exampleModalLabel1">Leave</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-           
-          @if ($errors->any())
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-          @endif
+          </div>         
           <form method="post" action="{{route('admin.addleave') }}" id="leaveform" enctype="multipart/form-data">
             @csrf
               <div class="modal-body">
@@ -128,10 +115,10 @@ a:hover, a:active, a:focus {
 @section('leave-js')
 <script>
   $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-});
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+  });
 
   $(document).ready(function(){    
     $('#leave-sbt').click(function(){          
@@ -149,9 +136,20 @@ a:hover, a:active, a:focus {
         }           
     });
   }) 
-  setTimeout(function(){
-      $("div.alert").remove();
-  }, 2000 ); // 5 secs
-  
+
+  $(".leave_type").click(function (e) {
+    e.preventDefault(e);    
+    var iid = $(this).attr('data-id');
+    //$('#leaveform').trigger("reset");
+      $('#leavemodel').modal('show');
+      $.ajax({ 
+        url:"{{ route('admin.editleave') }}" + '/' + iid,            
+        method: 'POST',
+        data: '',
+        dataType: 'json',
+      }).done(function (response) {
+        console.log(response);        
+      });
+  });
 </script>
 @endsection

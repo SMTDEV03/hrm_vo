@@ -34,8 +34,15 @@ class LeaveController extends Controller
         if($save){
             return redirect()->back()->withSuccess('Added Successfully');
             
-        }
-    
+        }    
+    }
+
+    public function leavetypebyID(Request $request){
+
+        //$id   = $request->input('dpt');
+
+        dd("hello"); die;
+
     }
 
 }
