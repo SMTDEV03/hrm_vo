@@ -28,6 +28,13 @@
             <ul class="treeview-menu">
                <li><a href="{{ route('pages.employeeList') }}">All Employee</a></li>
             </ul>
+         </li>
+         <li class="treeview">
+            <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+            <ul class="treeview-menu">
+               <li><a href="{{ route('pages.employeeList') }}">Holiday</a></li>
+               <li><a href="{{ route('pages.employeeList') }}">Leave Type</a></li>
+            </ul>
          </li>         
         @endif
      </ul>
