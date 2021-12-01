@@ -28,7 +28,6 @@
               {{-- @csrf --}}
               <form name="dptform" id="dptform" method="post">
                 @csrf
-
                 <span id="err_msg"></span>
                 <span id="success-msg"></span>
                 <div class="form-group">                

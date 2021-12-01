@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\LeaveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/employeeList', [HomeController::class, 'employeeList'])->name('pages.employeeList');       
         Route::resource('department', DepartmentController::class);
         Route::resource('designation', DesignationController::class);
+        Route::get('leavestype', [LeaveController::class, 'index'])->name('admin.leavestype');
+        Route::post('addleave', [LeaveController::class, 'add_leaves_type'])->name('admin.addleave');
     });
 
     // user routes

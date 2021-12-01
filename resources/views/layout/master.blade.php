@@ -18,6 +18,7 @@
   </div>
   @include('include.backend.footer')
   @yield('extra-js')
+  @yield('leave-js')
   </body>
 </html>
 
