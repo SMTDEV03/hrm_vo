@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 class LeaveController extends Controller
 {
     public function index(){
+
         $allLeavetypes = leavestype::all();
         return view('pages.leavestype',compact('allLeavetypes'));
     }
@@ -67,6 +68,11 @@ class LeaveController extends Controller
         if($success){
             return redirect()->back()->withSuccess('Leave Type Delete Successfully');
         }
+    }
+
+    public function leaveapplication()
+    {
+        return view('pages.leaveapprove');
     }
 
 }

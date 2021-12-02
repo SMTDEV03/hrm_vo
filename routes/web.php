@@ -44,10 +44,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('addleave', [LeaveController::class, 'add_leaves_type'])->name('admin.addleave');
         Route::post('leavetypebyID/{id?}', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
         Route::get('deleteleave/{id?}', [LeaveController::class, 'LeavetypeDelet'])->name('admin.deleteleave');
+        Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
         Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
         Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('pages.addholiday');
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
+        
     });
 
     // user routes

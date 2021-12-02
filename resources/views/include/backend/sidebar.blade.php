@@ -34,6 +34,7 @@
             <ul class="treeview-menu">
                <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>
                <li><a href="{{ route('admin.leavestype') }}">Leave Type</a></li>
+               <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>
             </ul>
          </li>         
         @endif
