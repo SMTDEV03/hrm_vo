@@ -61,7 +61,7 @@ class LeaveController extends Controller
         }        
     }
 
-    public function LeavetypeDelet($id)
+    public function LeavetypeDelet(Request $request,$id)
     {
         $success    = leavestype::destroy($id);
         if($success){

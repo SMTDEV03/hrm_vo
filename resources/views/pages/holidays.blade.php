@@ -16,7 +16,7 @@ a:hover, a:active, a:focus {
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
-      <h1 class="text-black">Leave List</h1>
+      <h1 class="text-black">Holiday List</h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li class="sub-bread"><i class="fa fa-angle-right"></i> Apps</li>
@@ -53,7 +53,26 @@ a:hover, a:active, a:focus {
                 </tr>
               </thead>
               <tbody>
-                                
+                @php 
+                  $sr = 1;                      
+                  @endphp
+                  @foreach ( $allholidays as $holidayinfo ) 
+                  <tr>
+                    <td>{{$sr}}</td>                    
+                    <td>{{ $holidayinfo->holiday_name }}</td>
+                    <td>{{date('jS \of F Y',strtotime($holidayinfo->from_date))}}</td>
+                    <td>{{date('jS \of F Y',strtotime($holidayinfo->to_date))}}</td>
+                    <td>{{ $holidayinfo->number_of_days }}</td>
+                    <td>{{ $holidayinfo->year }}</td>
+                    <td class="jsgrid-align-center ">
+                      <a href="" title="Edit" class="btn btn-info holiday" data-id="<?php echo $holidayinfo->id; ?>"><i class="fa fa-pencil-square-o"></i> Edit</a> 
+                      <a onclick="confirm('Are you sure want to delet this Value?')" href="{{route('admin.deleteleave',$holidayinfo->id) }}" title="Delete" class="btn btn-info"><i class="fa fa-trash-o"></i> Delete</a>
+                    </td>                                         
+                  </tr>
+                @php 
+                $sr++;                      
+                @endphp
+                @endforeach                 
               </tbody>
             </table>
           </div>
@@ -74,7 +93,8 @@ a:hover, a:active, a:focus {
               <h4 class="modal-title" id="exampleModalLabel1">Holidays</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
-          <form method="post" action="Add_Holidays" id="holidayform" enctype="multipart/form-data">
+          <form method="post" action="{{route('pages.addholiday')}}" id="holidayform" enctype="multipart/form-data">
+            @csrf
           <div class="modal-body">              
               <div class="form-group">
                   <label class="control-label">Holidays name</label>
@@ -130,21 +150,23 @@ a:hover, a:active, a:focus {
     });
   }) 
 
-  $(".leave_type").click(function (e) {
+  $(".holiday").click(function (e) {
     e.preventDefault(e);    
     var iid = $(this).attr('data-id');
     //$('#leaveform').trigger("reset");
-      $('#leavemodel').modal('show');
+      $('#holysmodel').modal('show');
       $.ajax({ 
-        url:"{{ route('admin.editleave') }}" + '/' + iid,            
+        url:"{{ route('admin.editholiday')}}" + '/' + iid,            
         type: 'POST',
         data: '',
         dataType: 'json',
-      }).done(function (response) {  
-        $('#leaveform').find('[name="id"]').val(response.leavetypevalue.id).end();
-        $('#leaveform').find('[name="leavename"]').val(response.leavetypevalue.name).end();
-        $('#leaveform').find('[name="leaveday"]').val(response.leavetypevalue.leave_days).end();            
-        //$('#leaveform').find('[name="leavename"]').val(response.leavetypevalue.name).end();       
+      }).done(function (response) { 
+        $('#holidayform').find('[name="id"]').val(response.holidayvalue.id).end();
+        $('#holidayform').find('[name="holiname"]').val(response.holidayvalue.holiday_name).end();
+        $('#holidayform').find('[name="startdate"]').val(response.holidayvalue.from_date).end();
+        $('#holidayform').find('[name="enddate"]').val(response.holidayvalue.to_date).end();
+        $('#holidayform').find('[name="nofdate"]').val(response.holidayvalue.number_of_days).end();
+        $('#holidayform').find('[name="year"]').val(response.holidayvalue.year).end();      
       });
   });
   setTimeout(function(){

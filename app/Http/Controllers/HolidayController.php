@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,38 +17,65 @@ use Illuminate\Http\Request;
 class HolidayController extends Controller
 {
     public function index(){
-        //$allLeavetypes = holidays::all();
-        return view('pages.holidays');
+        $allholidays = holidays::all();
+        return view('pages.holidays',compact('allholidays'));
     }
 
 
-    public function add_holiday(Request $request){
-
-               
+    public function add_holiday(Request $request)
+    {
+        
         $holiday = new holidays();        
         $holidayId = $request->id;
+        $sdate   = $request->startdate;
+        $edate   = $request->enddate;
+        $date1 = new DateTime($sdate);
+        $date2 = new DateTime($edate);
+        $diff = date_diff($date1,$date2);
+        $nofdate = $diff->format("%a");
+
+        $year    = date('m-Y',strtotime($sdate)); 
 
         /***For Add New Leave Type***/
-        if(empty($leaveId))
-        {
-            $holiday->holiday_name  = $request->holiname;
-            $holiday->from_date     = $request->startdate;
-            $holiday->to_date       = $request->enddate;
-            $save = $leavemodel->save();             
+        if(empty($holidayId))
+        {          
+
+                      
+
+            $holiday->holiday_name      = $request->holiname;
+            $holiday->from_date         = $request->startdate;
+            $holiday->to_date           = $request->enddate;
+            $holiday->number_of_days    = $nofdate;
+            $holiday->year              = $year;
+           
+            $save = $holiday->save();             
             if($save){
                 return redirect()->back()->withSuccess('Added Successfully');            
             }   
         }else{
-         /***For Edit Leave Type***/    
-            $leaveData               = leavestype::find($leaveId);
-            $leaveData->name         = $request->leavename;
-            $leaveData->leave_days   = $request->leaveday;
-            $save = $leaveData->save();   
+         /***For Edit Holiday***/ 
+         
+            
+            $holidaysData               = holidays::find($holidayId);
+            $holidaysData->holiday_name      = $request->holiname;
+            $holidaysData->from_date         = $request->startdate;
+            $holidaysData->to_date           = $request->enddate;
+            $holidaysData->number_of_days    = $nofdate;
+            $holidaysData->year              = $year;            
+            $save                            = $holidaysData->save();   
             if($save){
                 return redirect()->back();
             }
         }
-        die;         
+                 
+    }
+
+    public function holidaybyID(Request $request,$id){
+
+        if($request->ajax()){             
+            $data['holidayvalue']   = holidays::find($id);           
+            return response($data);              
+        }        
     }
 
 
