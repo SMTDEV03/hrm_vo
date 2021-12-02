@@ -42,8 +42,8 @@ class LeaveController extends Controller
             }   
         }else{
          /***For Edit Leave Type***/    
-            $leaveData             = leavestype::find($leaveId);
-            $leaveData->name        = $request->leavename;
+            $leaveData               = leavestype::find($leaveId);
+            $leaveData->name         = $request->leavename;
             $leaveData->leave_days   = $request->leaveday;
             $save = $leaveData->save();   
             if($save){
@@ -57,14 +57,16 @@ class LeaveController extends Controller
 
         if($request->ajax()){             
             $data['leavetypevalue']   = leavestype::find($id);           
-            return response($data);
-            //return response ();    
+            return response($data);              
+        }        
+    }
+
+    public function LeavetypeDelet($id)
+    {
+        $success    = leavestype::destroy($id);
+        if($success){
+            return redirect()->back()->withSuccess('Leave Type Delete Successfully');
         }
-
-        //$id   = $request->input('dpt');
-
-        
-
     }
 
 }

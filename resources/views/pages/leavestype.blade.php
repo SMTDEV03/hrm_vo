@@ -23,7 +23,7 @@ a:hover, a:active, a:focus {
         <li><i class="fa fa-angle-right"></i> Department</li>
       </ol>
       <div class="add_leave">
-        <button type="button" class="btn btn-info leavetype"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#leavemodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Leave Types</a></button>
+        <button type="button" class="btn btn-info leavetype"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#leavemodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Leave Types</a></button>
         <!--<a class="btn btn-primary leavetype" href="">Add Leave Type</a>-->        
       </div>
     </div>
@@ -59,7 +59,8 @@ a:hover, a:active, a:focus {
                     <td>{{ $Leaveinfo->name }}</td>
                     <td>{{ $Leaveinfo->leave_days }}</td>
                     <td>
-                      <a href="" title="Edit" class="btn btn-primary leave_type" data-id="<?php echo $Leaveinfo->id; ?>"><i class="fa fa-pencil-square-o"></i>Edit</a>                      
+                      <a href="" title="Edit" class="btn btn-info leave_type" data-id="<?php echo $Leaveinfo->id; ?>"><i class="fa fa-pencil-square-o"></i> Edit</a> 
+                      <a onclick="confirm('Are you sure want to delet this Value?')" href="{{route('admin.deleteleave',$Leaveinfo->id) }}" title="Delete" class="btn btn-info"><i class="fa fa-trash-o"></i> Delete</a>                     
                     </td>                      
                   </tr>
                 @php 
