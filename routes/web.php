@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\HolidayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('addleave', [LeaveController::class, 'add_leaves_type'])->name('admin.addleave');
         Route::post('leavetypebyID/{id?}', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
         Route::get('deleteleave', [LeaveController::class, 'LeavetypeDelet'])->name('admin.deleteleave');
+        Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
+        Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('admin.addholiday');
     });
 
     // user routes
