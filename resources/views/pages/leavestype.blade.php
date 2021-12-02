@@ -144,12 +144,18 @@ a:hover, a:active, a:focus {
       $('#leavemodel').modal('show');
       $.ajax({ 
         url:"{{ route('admin.editleave') }}" + '/' + iid,            
-        method: 'POST',
+        type: 'POST',
         data: '',
         dataType: 'json',
-      }).done(function (response) {
-        console.log(response);        
+      }).done(function (response) {  
+        $('#leaveform').find('[name="id"]').val(response.leavetypevalue.id).end();
+        $('#leaveform').find('[name="leavename"]').val(response.leavetypevalue.name).end();
+        $('#leaveform').find('[name="leaveday"]').val(response.leavetypevalue.leave_days).end();            
+        //$('#leaveform').find('[name="leavename"]').val(response.leavetypevalue.name).end();       
       });
   });
+  setTimeout(function(){
+      $("div.alert").remove();
+  }, 2000 ); // 5 secs
 </script>
 @endsection

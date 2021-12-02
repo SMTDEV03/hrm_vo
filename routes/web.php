@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('designation', DesignationController::class);
         Route::get('leavestype', [LeaveController::class, 'index'])->name('admin.leavestype');
         Route::post('addleave', [LeaveController::class, 'add_leaves_type'])->name('admin.addleave');
-        Route::post('leavetypebyID', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
+        Route::post('leavetypebyID/{id?}', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
     });
 
     // user routes

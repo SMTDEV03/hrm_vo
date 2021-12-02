@@ -21,27 +21,49 @@ class LeaveController extends Controller
 
     public function add_leaves_type(Request $request){
 
+        //dd($request->all()); die;
+
         $validate = $request->validate([
             'leavename' => 'required',
             'leaveday' => 'required'
         ]);
         
-        $leavemodel = new leavestype();
-        $leavemodel->name = $request->leavename;
-        $leavemodel->leave_days  = $request->leaveday;
-        $save = $leavemodel->save();  
-        
-        if($save){
-            return redirect()->back()->withSuccess('Added Successfully');
-            
-        }    
+        $leavemodel = new leavestype();        
+        $leaveId = $request->id;
+
+        /***For Add New Leave Type***/
+        if(empty($leaveId))
+        {
+            $leavemodel->name        = $request->leavename;
+            $leavemodel->leave_days  = $request->leaveday;
+            $save = $leavemodel->save();             
+            if($save){
+                return redirect()->back()->withSuccess('Added Successfully');            
+            }   
+        }else{
+         /***For Edit Leave Type***/    
+            $leaveData             = leavestype::find($leaveId);
+            $leaveData->name        = $request->leavename;
+            $leaveData->leave_days   = $request->leaveday;
+            $save = $leaveData->save();   
+            if($save){
+                return redirect()->back();
+            }
+        }
+        die;         
     }
 
-    public function leavetypebyID(Request $request){
+    public function leavetypebyID(Request $request,$id){
+
+        if($request->ajax()){             
+            $data['leavetypevalue']   = leavestype::find($id);           
+            return response($data);
+            //return response ();    
+        }
 
         //$id   = $request->input('dpt');
 
-        dd("hello"); die;
+        
 
     }
 

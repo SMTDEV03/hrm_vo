@@ -10,4 +10,5 @@ class leavestype extends Model
     use HasFactory;
 
     protected $table = "leavestypes";
+    public $timestamps = false;
 }
