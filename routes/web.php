@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
         Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('pages.addholiday');
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
+        Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
     });
 
     // user routes

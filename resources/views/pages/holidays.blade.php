@@ -32,7 +32,7 @@ a:hover, a:active, a:focus {
     <div class="content"> 
       <!-- Small boxes (Stat box) -->
       <div class="row">              
-        <div class="col-lg-9">         
+        <div class="col-lg-12">         
           @if(Session::get('success'))   
           <div class="alert alert-info" role="alert">   
           {{ Session::get('success' )}}  
@@ -66,7 +66,7 @@ a:hover, a:active, a:focus {
                     <td>{{ $holidayinfo->year }}</td>
                     <td class="jsgrid-align-center ">
                       <a href="" title="Edit" class="btn btn-info holiday" data-id="<?php echo $holidayinfo->id; ?>"><i class="fa fa-pencil-square-o"></i> Edit</a> 
-                      <a onclick="confirm('Are you sure want to delet this Value?')" href="{{route('admin.deleteleave',$holidayinfo->id) }}" title="Delete" class="btn btn-info"><i class="fa fa-trash-o"></i> Delete</a>
+                      <a onclick="confirm('Are you sure want to delet this Value?')" href="{{route('admin.deleteholiday',$holidayinfo->id) }}" title="Delete" class="btn btn-info"><i class="fa fa-trash-o"></i> Delete</a>
                     </td>                                         
                   </tr>
                 @php 

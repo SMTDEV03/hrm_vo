@@ -78,5 +78,13 @@ class HolidayController extends Controller
         }        
     }
 
+    public function holidayDelet(Request $request,$id)
+    {
+        $success    = holidays::destroy($id);
+        if($success){
+            return redirect()->back()->withSuccess('Holiday Delete Successfully');
+        }
+    }
+
 
 }
