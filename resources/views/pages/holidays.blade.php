@@ -12,6 +12,9 @@ a:hover, a:active, a:focus {
     border: none;
 } 
 </style>
+    @php 
+    $user = auth()->user();            
+    @endphp
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
@@ -22,10 +25,12 @@ a:hover, a:active, a:focus {
         <li class="sub-bread"><i class="fa fa-angle-right"></i> Apps</li>
         <li><i class="fa fa-angle-right"></i> Holiday</li>
       </ol>
+      @if($user->role == 1)
       <div class="add_leave">
         <button type="button" class="btn btn-info leavetype"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#holysmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Holiday</a></button>
         <!--<a class="btn btn-primary leavetype" href="">Add Leave Type</a>-->        
       </div>
+      @endif
     </div>
     
     <!-- Main content -->
@@ -37,8 +42,7 @@ a:hover, a:active, a:focus {
           <div class="alert alert-info" role="alert">   
           {{ Session::get('success' )}}  
           </div>    
-          @endif
-          
+          @endif          
           <div class="table-responsive">
             <table class="table table-hover">
               <thead class="thead-dark">
@@ -49,7 +53,9 @@ a:hover, a:active, a:focus {
                   <th scope="col">End Date</th>
                   <th scope="col">Number of Days</th>
                   <th scope="col">Years</th>
-                  <th scope="col">Action</th>                  
+                  @if($user->role == 1)
+                  <th scope="col">Action</th> 
+                  @endif                 
                 </tr>
               </thead>
               <tbody>
@@ -64,10 +70,12 @@ a:hover, a:active, a:focus {
                     <td>{{date('jS \of F Y',strtotime($holidayinfo->to_date))}}</td>
                     <td>{{ $holidayinfo->number_of_days }}</td>
                     <td>{{ $holidayinfo->year }}</td>
+                    @if($user->role == 1)
                     <td class="jsgrid-align-center ">
                       <a href="" title="Edit" class="btn btn-info holiday" data-id="<?php echo $holidayinfo->id; ?>"><i class="fa fa-pencil-square-o"></i> Edit</a> 
                       <a onclick="confirm('Are you sure want to delet this Value?')" href="{{route('admin.deleteholiday',$holidayinfo->id) }}" title="Delete" class="btn btn-info"><i class="fa fa-trash-o"></i> Delete</a>
-                    </td>                                         
+                    </td>
+                    @endif                                        
                   </tr>
                 @php 
                 $sr++;                      

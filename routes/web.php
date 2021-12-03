@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
+        Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
        
     });
 

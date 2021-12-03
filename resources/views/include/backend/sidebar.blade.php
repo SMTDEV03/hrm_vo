@@ -14,6 +14,12 @@
         <li class="active treeview">
            <a href="{{ route('admin.dashboard') }}"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </span> </a>
         </li>
+        <li class="treeview">
+         <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+         <ul class="treeview-menu">
+            <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>            
+         </ul>
+      </li> 
          @php $user = auth()->user(); @endphp
           @if($user->role == 1)
           <li class="treeview">
