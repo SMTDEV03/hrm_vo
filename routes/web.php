@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
         Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
+        Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
     });
 

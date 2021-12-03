@@ -17,7 +17,8 @@
         <li class="treeview">
          <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
          <ul class="treeview-menu">
-            <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>            
+            <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>
+            <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>            
          </ul>
       </li> 
          @php $user = auth()->user(); @endphp

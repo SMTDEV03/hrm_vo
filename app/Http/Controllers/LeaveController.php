@@ -9,6 +9,7 @@ use App\Models\designation;
 use App\Models\department;
 use App\Models\profile;
 use App\Models\leavestype;
+use App\Models\employee_application;
 
 use Illuminate\Http\Request;
 
