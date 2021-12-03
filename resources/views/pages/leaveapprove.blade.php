@@ -16,7 +16,7 @@
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
-      <h1 class="text-black">Application</h1>
+      <h1 class="text-black">Leave Application</h1>
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li class="sub-bread"><i class="fa fa-angle-right"></i> Apps</li>
@@ -76,6 +76,7 @@
     <!-- Main row --> 
 
 @endsection
+
 <div class="modal fade" id="appmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
   <div class="modal-dialog" role="document">
       <div class="modal-content ">
@@ -87,12 +88,15 @@
               <div class="modal-body">
                   
                   <div class="form-group">
-                      <label>Employee</label>                      
+                      <label>Employee Name</label> 
+                      <input type="text" name="empid" id="empid" value="{{$userinfo[0]->fname.' '. $userinfo[0]->lname}}" class="form-control" readonly>                     
                   </div>
                   <div class="form-group">
                       <label>Leave Type</label>
                       <select class="form-control custom-select assignleave"  tabindex="1" name="typeid" id="leavetype" required>
-                          
+                        <?php foreach($allLeavetypes as $value): ?>
+                          <option value="<?php echo $value->id ?>"><?php echo $value->name ?></option>
+                        <?php endforeach; ?>
                       </select>
                   </div>
                   <div class="form-group">
@@ -103,14 +107,13 @@
                       <br>
                   </div>
                   <div class="form-group">
-                      <label class="control-label">Leave Duration</label><br>
-                      <input name="type" type="radio" id="radio_1" data-value="Half" class="duration" value="Half Day" checked="">
-                      <label for="radio_1">Hourly</label>
-                      <input name="type" type="radio" id="radio_2" data-value="Full" class="type" value="Full Day">
-                      <label for="radio_2">Full Day</label>
-                      <input name="type" type="radio" class="with-gap duration" id="radio_3" data-value="More" value="More than One day">
-                      <label for="radio_3">Above a Day</label>
-                  </div>
+                    <label class="control-label">Leave Duration</label><br>                    
+                    <input name="type" type="radio" id="radio_2" data-value="Full" class="type" value="Full Day" checked="">
+                    <label for="radio_2">Full Day</label>
+                    <input name="type" type="radio" class="with-gap duration" id="radio_3" data-value="More" value="More than One day">
+                    <label for="radio_3">Above a Day</label>
+                </div>
+
                   <div class="form-group">
                       <label class="control-label" id="hourlyFix">Date</label>
                       <input type="date" name="startdate" class="form-control" id="recipient-name1" required>
@@ -118,25 +121,10 @@
                   <div class="form-group" id="enddate" style="display:none">
                       <label class="control-label">End Date</label>
                       <input type="date" name="enddate" class="form-control" id="recipient-name1">
-                  </div>
-
-                  <div class="form-group" id="hourAmount">
-                      <label>Length</label>
-                      <select  id="hourAmountVal" class=" form-control custom-select"  tabindex="1" name="hourAmount" required>
-                          <option value="">Select Hour</option>
-                          <option value="1">One hour</option>
-                          <option value="2">Two hour</option>
-                          <option value="3">Three hour</option>
-                          <option value="4">Four hour</option>
-                          <option value="5">Five hour</option>
-                          <option value="6">Six hour</option>
-                          <option value="7">Seven hour</option>
-                          <option value="8">Eight hour</option>
-                      </select>
-                  </div>
+                  </div>                  
                   <div class="form-group">
                       <label class="control-label">Reason</label>
-                      <textarea class="form-control" name="reason" id="message-text1" required minlength="10"></textarea>                                                
+                      <textarea class="form-control" cols="5" rows="5" name="reason" id="message-text1" required minlength="10"></textarea>                                                
                   </div>                  
               </div>              
               <div class="modal-footer">
@@ -148,3 +136,30 @@
       </div>
   </div>
 </div>
+@section('application-js')
+<script>
+  $(document).ready(function () {
+      $('#leaveapply input').on('change', function(e) {
+          e.preventDefault(e);
+
+          // Get the record's ID via attribute  
+          var duration = $('input[name=type]:checked', '#leaveapply').attr('data-value');
+
+          if(duration =='Half'){
+              $('#enddate').hide();
+              $('#hourlyFix').text('Date');
+              $('#hourAmount').show();
+          }
+          else if(duration =='Full'){
+              $('#enddate').hide();  
+              $('#hourAmount').hide();  
+              $('#hourlyFix').text('Start date');  
+          }
+          else if(duration =='More'){
+              $('#enddate').show();
+              $('#hourAmount').hide();
+          }
+      });
+  }); 
+  </script>
+@endsection

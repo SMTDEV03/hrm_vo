@@ -19,6 +19,7 @@
   @include('include.backend.footer')
   @yield('extra-js')
   @yield('leave-js')
+  @yield('application-js')
   </body>
 </html>
 

@@ -73,7 +73,24 @@ class LeaveController extends Controller
 
     public function leaveapplication()
     {
-        return view('pages.leaveapprove');
+        $allLeavetypes = leavestype::all();
+
+        $info = auth()->user();
+        //dd($info);
+        $logingUserID = $info->id;
+
+       
+        $userinfo = DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->select('users.*', 'profiles.*') 
+        ->where('users.id', '=', $logingUserID)        
+        ->where('users.is_deleted', '=', 0)
+        ->get();
+
+        //dd($userinfo); die;
+
+
+        return view('pages.leaveapprove',compact('allLeavetypes','userinfo'));
     }
 
 }
