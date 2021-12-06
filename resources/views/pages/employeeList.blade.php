@@ -2,7 +2,13 @@
 @section('title', 'Home')
 @section('content') 
 
-
+<style>
+  a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+}
+  </style>
 
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
@@ -51,19 +57,29 @@
                   </thead>
                   <tbody>
                     @php 
-                    $sr = 1;                      
+                    $sr = 1; 
+                                       
                     @endphp
                     @foreach ( $users as $userinfo )
-                  
+                    @php 
+                    if($userinfo->status == 0){
+                      $class = 'btn-success';
+                      $status = 'Active';
+                    } else{
+                      $class = 'btn-warning';
+                      $status = 'In-Active';
+                    }                   
+                    @endphp
                     <tr>
                       <td>{{$sr}}</td>
                       <td><a href="#">{{ $userinfo->fname .' '. $userinfo->lname}}</a></td>
                       <td>{{ $userinfo->email }}</td>
                       <td>+91-123456789</td>
                       <td>Designer</td>
-                      <td>10-June-2021</td>                     
-                      <td><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="ti-close" aria-hidden="true"></i> </button></td>
-                      <td><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="ti-close" aria-hidden="true"></i> </button></td>
+                      <td>10-June-2021</td>                                     
+                      <td>
+                        <a href="" title="Edit" class="btn {{$class}} check_status" data-id="<?php echo $userinfo->user_id; ?>">{{$status}}</a>                        
+                      <td><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"> Delete</button></td>
                     </tr>
                     @php 
                     $sr++;                      
@@ -82,7 +98,30 @@
     <!-- /.content --> 
   </div>
     <!-- Main row --> 
-
-
+    @section('checkStatus.js')
+    <script>
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+  });
+    $(".check_status").click(function (e) {
+      e.preventDefault(e);    
+      var iid = $(this).attr('data-id');
+          $.ajax({ 
+          url:"{{ route('pages.updateStatus')}}" + '/' + iid,            
+          type: 'POST',
+          data: '',         
+        }).done(function (response) { 
+          if(response==='success') {               
+                setTimeout(function () {                  
+                  location.reload();
+                }, 1000);
+              }    
+        });      
+    });
+    
+</script>
+@endsection
 
 @endsection

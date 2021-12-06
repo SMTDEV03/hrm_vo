@@ -20,7 +20,8 @@ use App\Http\Controllers\HolidayController;
 */
 
 // guest user routes
-Route::group(['middleware' => 'guest'], function () {
+
+    Route::group(['middleware' => 'guest'], function () {
     Route::get('/', function () {
         return view('auth.login');
     });
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('pages.addholiday');
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
+        Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');
         
     });
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\designation;
 use App\Models\department;
 use App\Models\profile;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -83,16 +84,20 @@ class HomeController extends Controller
 
     }
 
-    /***Show All Department Name**/
+    public function updateStatus(request $request, $id){
+        if($request->ajax()){ 
 
-    /*public function allDepartments(){
-        $allDepart      = department::all();
-        return view('pages.department',compact('allDepart'));
-    }
-
-    /***Add Department Name for Admin***/
-
-    public function addDepartment(){
+            $users = User::find($id);
+            if($users->status == 0){
+                $users->status = 1;
+            } elseif($users->status == 1){
+                $users->status = 0;
+            }
+            $save = $users->save();
+            if($save){
+                return response('success');
+            }
+        }
         
     }
 

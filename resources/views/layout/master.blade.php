@@ -20,6 +20,7 @@
   @yield('extra-js')
   @yield('leave-js')
   @yield('application-js')
+  @yield('checkStatus.js')
   </body>
 </html>
 

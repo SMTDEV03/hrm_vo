@@ -73,6 +73,8 @@ class LeaveController extends Controller
 
     public function leaveapplication()
     {
+
+        
         $allLeavetypes = leavestype::all();
 
         $info = auth()->user();
@@ -89,7 +91,7 @@ class LeaveController extends Controller
 
         //dd($userinfo); die;
 
-
+        
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo'));
     }
 
