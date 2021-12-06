@@ -94,8 +94,8 @@
                          @endphp
                         </td> 
                         @if($user->role == 1)
-                        <td class="jsgrid-align-center ">
-                          <a href="" title="Edit" class="btn btn-info holiday" data-id="<?php echo $allLeaveinfo->id; ?>"><i class="fa fa-pencil-square-o"></i> Not Approve</a>                           
+                        <td class="jsgrid-align-center ">                          
+                          <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->user_id) }}" title="Delete" class="btn btn-info">Approve</a>                                                
                         </td>
                         @endif                                             
                       </tr>

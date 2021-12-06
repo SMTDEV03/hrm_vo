@@ -99,10 +99,11 @@ class LeaveController extends Controller
 
     public function add_application(Request $request){
 
-        // dd($request);
-        // die;
+        /*dd($request);
+        die;*/
 
-        $empApplication = new employee_application(); 
+        $empApplication = new employee_application();
+        $empApplication->user_id        = $request->userid; 
         $empApplication->leave_type_id  = $request->typeid;
         $empApplication->start_date     = $request->startdate;
         $empApplication->end_date       = $request->end_date;
@@ -115,6 +116,14 @@ class LeaveController extends Controller
         if($save){
             return redirect()->back()->withSuccess('Added Successfully');            
         } 
+    }
+
+    public function approveleave(Request $request,$userid){
+
+        echo $userid;
+        $ApplicationData   = employee_application::find($userid);
+        dd($ApplicationData);
+        die;
     }
 
 }

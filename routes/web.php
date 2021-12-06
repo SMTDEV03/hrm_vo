@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
         Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');        
+        Route::get('approveleave/{id?}', [LeaveController::class, 'approveleave'])->name('admin.approveleave');
     });
 
     // user routes
