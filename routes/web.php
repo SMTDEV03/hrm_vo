@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('leavetypebyID/{id?}', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
         Route::get('deleteleave/{id?}', [LeaveController::class, 'LeavetypeDelet'])->name('admin.deleteleave');
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
-        Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
+        //Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
         Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('pages.addholiday');
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
@@ -58,11 +58,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'user', 'middleware' => 'is_user'], function () {
         Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
-        Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
-        Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
+        Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');        
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
     });
+    Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
     Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
     Route::get('/auth/logout', [MainController::class, 'logout'])->name('auth.logout');
 

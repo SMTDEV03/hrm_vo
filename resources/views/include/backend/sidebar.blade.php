@@ -13,14 +13,7 @@
      <ul class="sidebar-menu" data-widget="tree">        
         <li class="active treeview">
            <a href="{{ route('admin.dashboard') }}"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </span> </a>
-        </li>
-        <li class="treeview">
-         <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
-         <ul class="treeview-menu">
-            <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>
-            <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>            
-         </ul>
-      </li> 
+        </li>       
          @php $user = auth()->user(); @endphp
           @if($user->role == 1)
           <li class="treeview">
@@ -35,16 +28,18 @@
             <ul class="treeview-menu">
                <li><a href="{{ route('pages.employeeList') }}">All Employee</a></li>
             </ul>
-         </li>
-         <li class="treeview">
-            <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
-            <ul class="treeview-menu">
-               <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>
-               <li><a href="{{ route('admin.leavestype') }}">Leave Type</a></li>
-               <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>
-            </ul>
-         </li>         
+         </li>                 
         @endif
+        <li class="treeview">
+         <a href="#"> <i class="fa fa-bullseye"></i> <span>Leave</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+         <ul class="treeview-menu">
+            @if($user->role == 1)
+            <li><a href="{{ route('admin.leavestype') }}">Leave Type</a></li>
+            @endif
+            <li><a href="{{ route('pages.holidays') }}">Holiday</a></li>            
+            <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>            
+         </ul>
+      </li> 
      </ul>
   </div>
   <!-- /.sidebar --> 

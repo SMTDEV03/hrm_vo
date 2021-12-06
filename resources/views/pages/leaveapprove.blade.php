@@ -38,7 +38,7 @@
               <div class="right-page-header">
                 <div class="d-flex">
                   <div class="align-self-center">
-                    <h4 class="text-black m-b-1">Employee List </h4>
+                    <h4 class="text-black m-b-1">Leave Application </h4>
                   </div>
                   <div class="ml-auto">
                     <input id="demo-input-search2" placeholder="search contacts" class="form-control" type="text">
@@ -46,17 +46,17 @@
                 </div>
               </div>
               <div class="table-responsive">
-                <table id="example2" class="table table-bordered table-hover no-wrap">
+                <table id="example2" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>Sr No</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      <th>Designation</th>
-                      <th>DOJ</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th scope="col">Sr No</th>
+                      <th scope="col">Leave Type</th>
+                      <th scope="col">Apply Date</th>
+                      <th scope="col">Start Date</th>
+                      <th scope="col">End Date</th>
+                      <th scope="col">Duration</th>
+                      <th scope="col">Leave Status</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>                     
@@ -84,12 +84,18 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <form method="post" action="Add_Applications" id="leaveapply" enctype="multipart/form-data">
-              <div class="modal-body">
-                  
+              <div class="modal-body">                  
                   <div class="form-group">
                       <label>Employee Name</label> 
                       <input type="text" name="empid" id="empid" value="{{$userinfo[0]->fname.' '. $userinfo[0]->lname}}" class="form-control" readonly>                     
                   </div>
+                  <div class="form-group">
+                    <span style="color:red" id="total"></span>
+                    <div class="span pull-right">
+                        <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
+                    </div>
+                    <br>
+                </div>
                   <div class="form-group">
                       <label>Leave Type</label>
                       <select class="form-control custom-select assignleave"  tabindex="1" name="typeid" id="leavetype" required>
@@ -97,14 +103,7 @@
                           <option value="<?php echo $value->id ?>"><?php echo $value->name ?></option>
                         <?php endforeach; ?>
                       </select>
-                  </div>
-                  <div class="form-group">
-                      <span style="color:red" id="total"></span>
-                      <div class="span pull-right">
-                          <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
-                      </div>
-                      <br>
-                  </div>
+                  </div>                  
                   <div class="form-group">
                     <label class="control-label">Leave Duration</label><br>                    
                     <input name="type" type="radio" id="radio_2" data-value="Full" class="type" value="Full Day" checked="">
@@ -127,7 +126,7 @@
                   </div>                  
               </div>              
               <div class="modal-footer">
-                  <input type="hidden" name="id" class="form-control" id="recipient-name1" required>
+                  <input type="hidden" name="id" class="form-control" id="userid" value="{{$userinfo[0]->user_id}}">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Submit</button>
               </div>
@@ -140,7 +139,6 @@
   $(document).ready(function () {
       $('#leaveapply input').on('change', function(e) {
           e.preventDefault(e);
-
           // Get the record's ID via attribute  
           var duration = $('input[name=type]:checked', '#leaveapply').attr('data-value');
 
@@ -159,6 +157,22 @@
               $('#hourAmount').hide();
           }
       });
-  }); 
-  </script>
+  });
+  $(document).ready(function () {
+        $('.fetchLeaveTotal').on('click', function (e) {
+            e.preventDefault();
+            var selectedEmployeeID = $('#userid').val();            
+            var leaveTypeID = $('.assignleave').val();
+            console.log(selectedEmployeeID, leaveTypeID);
+            $.ajax({
+                url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
+                method: 'GET',
+                data: '',
+            }).done(function (response) {
+                //console.log(response);
+                $("#total").html(response);
+            });
+        });
+    }); 
+</script>
 @endsection
