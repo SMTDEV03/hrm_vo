@@ -44,21 +44,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('leavestype', [LeaveController::class, 'index'])->name('admin.leavestype');
         Route::post('addleave', [LeaveController::class, 'add_leaves_type'])->name('admin.addleave');
         Route::post('leavetypebyID/{id?}', [LeaveController::class, 'leavetypebyID'])->name('admin.editleave');
-        Route::get('deleteleave/{id?}', [LeaveController::class, 'LeavetypeDelet'])->name('admin.deleteleave');
-        //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
-        //Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
+        Route::get('deleteleave/{id?}', [LeaveController::class, 'LeavetypeDelet'])->name('admin.deleteleave');                       
         Route::post('addholiday', [HolidayController::class, 'add_holiday'])->name('pages.addholiday');
         Route::post('holidaybyID/{id?}', [HolidayController::class, 'holidaybyID'])->name('admin.editholiday');
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
-        Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');
-        
+        Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');        
     });
 
     // user routes
     Route::group(['prefix' => 'user', 'middleware' => 'is_user'], function () {
         Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
-        Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');        
+        Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
+        Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('user.fetchleave'); 
+        Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');       
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
     });

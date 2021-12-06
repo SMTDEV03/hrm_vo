@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -73,15 +74,10 @@ class LeaveController extends Controller
 
     public function leaveapplication()
     {
-
         
         $allLeavetypes = leavestype::all();
-
-        $info = auth()->user();
-        //dd($info);
-        $logingUserID = $info->id;
-
-       
+        $info = auth()->user();  
+        $logingUserID = $info->id;       
         $userinfo = DB::table('users')
         ->join('profiles', 'users.id', '=', 'profiles.user_id')
         ->select('users.*', 'profiles.*') 
@@ -89,10 +85,36 @@ class LeaveController extends Controller
         ->where('users.is_deleted', '=', 0)
         ->get();
 
-        //dd($userinfo); die;
+        $allLeaveinfo = employee_application::all();
 
+        //$data['leavetypevalue']   = leavestype::find($id); 
         
-        return view('pages.leaveapprove',compact('allLeavetypes','userinfo'));
+        return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
+    }
+
+    public function getleavebyID(Request $request,$id){
+        $total = DB::table('leavestypes')->sum('leave_days');        
+        echo 'Leave Balance: '.$total;
+    }
+
+    public function add_application(Request $request){
+
+        // dd($request);
+        // die;
+
+        $empApplication = new employee_application(); 
+        $empApplication->leave_type_id  = $request->typeid;
+        $empApplication->start_date     = $request->startdate;
+        $empApplication->end_date       = $request->end_date;
+        $empApplication->leave_type     = $request->type;       
+        $empApplication->reason         = $request->reason;
+        $empApplication->apply_date     = date('Y-m-d');
+        $empApplication->leave_status   = 'Not Approve';
+
+        $save = $empApplication->save();             
+        if($save){
+            return redirect()->back()->withSuccess('Added Successfully');            
+        } 
     }
 
 }

@@ -18,7 +18,7 @@ class CreateEmpApplicationTable extends Migration
             $table->string('leave_type');
             $table->string('start_date');
             $table->string('end_date');
-            $table->string('leave_duration');
+            $table->string('leave_type_id');
             $table->string('apply_date');
             $table->text('reason');            
             $table->string('leave_status'); 
