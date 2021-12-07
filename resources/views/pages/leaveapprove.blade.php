@@ -217,7 +217,7 @@
             var leaveTypeID = $('.assignleave').val();
             //console.log(selectedEmployeeID, leaveTypeID);
             $.ajax({
-                url:"{{ route('user.fetchleave') }}" + '/' + EmployeeID, 
+                url:"{{route('admin.fetchleave') }}" + '/' + EmployeeID, 
                 //url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
                 method: 'post',
                 data: '',

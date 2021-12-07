@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
         Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');        
         Route::get('approveleave/{id?}', [LeaveController::class, 'approveleave'])->name('admin.approveleave');
+        Route::Post('noticeStore', [NoticeController::class, 'add_notice'])->name('noticeStore');
+        Route::get('deleteNotice/{id}', [NoticeController::class, 'noticeDelete'])->name('deleteNotice');
     });
 
     // user routes
@@ -57,7 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
-        Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('user.fetchleave'); 
+        Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('admin.fetchleave'); 
         Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');       
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        

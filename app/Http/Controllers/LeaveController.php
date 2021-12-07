@@ -91,7 +91,7 @@ class LeaveController extends Controller
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
     }
 
-    public function getleavebyID(Request $request,$id){
+    public function getleavebyID($id){                    
         $total = DB::table('leavestypes')->sum('leave_days');        
         echo 'Leave Balance: '.$total;
     }
