@@ -16,6 +16,7 @@ class CreateNoticesTable extends Migration
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('is_deleted');
             $table->date('date');
             $table->timestamps();
         });

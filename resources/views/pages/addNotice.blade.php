@@ -51,7 +51,7 @@
               <div class="right-page-header">
                 <div class="d-flex">
                   <div class="align-self-center">
-                    <h4 class="text-black m-b-1">Employee List </h4>
+                    <h4 class="text-black m-b-1">Notice List </h4>
                   </div>
                   <div class="ml-auto">
                     <input id="demo-input-search2" placeholder="search contacts" class="form-control" type="text">
@@ -126,3 +126,8 @@
       </div>
   </div>
 @endsection
+<script>
+setTimeout(function(){
+      $("div.alert").remove();
+  }, 2000 ); // 5 secs  
+</script>

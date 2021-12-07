@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('deleteholiday/{id?}', [HolidayController::class, 'holidayDelet'])->name('admin.deleteholiday');
         Route::post('updateStatus/{id?}', [HomeController::class, 'updateStatus'])->name('pages.updateStatus');        
         Route::get('approveleave/{id?}', [LeaveController::class, 'approveleave'])->name('admin.approveleave');
+        Route::get('addNotice', [NoticeController::class, 'index'])->name('addNotice');
         Route::Post('noticeStore', [NoticeController::class, 'add_notice'])->name('noticeStore');
         Route::get('deleteNotice/{id}', [NoticeController::class, 'noticeDelete'])->name('deleteNotice');
     });
