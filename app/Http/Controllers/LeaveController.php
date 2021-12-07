@@ -97,24 +97,40 @@ class LeaveController extends Controller
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
     }
 
-    public function getleavebyID($id){                    
+    public function getleavebyID($id){
+                        
         $total = DB::table('leavestypes')->sum('leave_days');        
-        echo 'Leave Balance: '.$total;
+        //echo 'Leave Balance: '.$total;
+
+        $balnceleave =  employee_application::where('user_id',$id)->get();
+        echo $balnceleave;
+
+        die;
     }
 
     /*******  Function for Add Employee Leave Application    *******/
 
     public function add_application(Request $request){
 
+        if($request->type=='Full Day'){
+            $days = 1;    
+        }else{
+            $datetime1 = new DateTime($request->startdate);
+            $datetime2 = new DateTime($request->end_date);
+            $interval  = $datetime1->diff($datetime2);
+            $days      = $interval->format('%a');//now do whatever you like with $days
+        }
+
         $empApplication = new employee_application();
-        $empApplication->user_id        = $request->userid; 
-        $empApplication->leave_type_id  = $request->typeid;
-        $empApplication->start_date     = $request->startdate;
-        $empApplication->end_date       = $request->end_date;
-        $empApplication->leave_type     = $request->type;       
-        $empApplication->reason         = $request->reason;
-        $empApplication->apply_date     = date('Y-m-d');
-        $empApplication->leave_status   = 'Not Approve';
+        $empApplication->user_id         = $request->userid; 
+        $empApplication->leave_type_id   = $request->typeid;
+        $empApplication->start_date      = $request->startdate;
+        $empApplication->end_date        = $request->end_date;
+        $empApplication->leave_type      = $request->type;       
+        $empApplication->reason          = $request->reason;
+        $empApplication->leave_duration  = $days;
+        $empApplication->apply_date      = date('Y-m-d');
+        $empApplication->leave_status    = 'Not Approve';
 
         $save = $empApplication->save();             
         if($save){
@@ -122,13 +138,16 @@ class LeaveController extends Controller
         } 
     }
 
-    public function approveleave($userid){
+    public function approveleave($id){
+        $application = employee_application::where('user_id',$id)->first();  
+        $checkstatus = $application->leave_status;  
+        
+        if($checkstatus=='Not Approve'){
 
-        echo $userid;
-        //$dptcheck = DB::table('employee_application')->where('user_id',$userid);
-        $ApplicationData   = employee_application::find($userid);
-        dd($ApplicationData);
-        die;
+        }
+        //dd($application);
+        //dd($checkstatus);
+       //die;
     }
 
 }

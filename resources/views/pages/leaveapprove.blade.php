@@ -95,7 +95,7 @@
                         </td> 
                         @if($user->role == 1)
                         <td class="jsgrid-align-center ">                          
-                          <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->user_id) }}" title="Delete" class="btn btn-info">Approve</a>                                                                          
+                          <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->id) }}" title="Delete" class="btn btn-info">Approve</a>                                                                          
                         </td>
                         @endif                                             
                       </tr>
