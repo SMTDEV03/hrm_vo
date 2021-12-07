@@ -11,4 +11,11 @@ class leavestype extends Model
 
     protected $table = "leavestypes";
     public $timestamps = false;
+
+    public function getleavetype()
+    {
+        
+        return $this->hasOne(Name::class);
+    }
+
 }

@@ -1,6 +1,7 @@
 @extends('layout.master')
 @section('title', 'Home')
 @section('content')
+@php use App\Helpers\Helper; @endphp
 <style>
   .leavetype {
       padding: 8px;
@@ -13,7 +14,7 @@
   } 
   </style>
    @php 
-    $user = auth()->user();            
+    $user = auth()->user();        
     @endphp
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper"> 
@@ -73,10 +74,12 @@
                         <td>{{$sr}}</td>
                         <td>                        
                           @php
-                            if ($allLeaveinfo->leave_type_id==2) {
+                          $test = Helper::getLeavename($allLeaveinfo->leave_type_id);                         
+                            /*if ($allLeaveinfo->leave_type_id==2) {
                             echo 'Sick Leave';
-                          }                                                 
+                          } */                                                
                          @endphp
+                         {{$test->name}}
                         </td>                        
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       

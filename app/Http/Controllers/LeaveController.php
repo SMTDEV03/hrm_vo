@@ -11,6 +11,7 @@ use App\Models\department;
 use App\Models\profile;
 use App\Models\leavestype;
 use App\Models\employee_application;
+use App\Helpers\Helper;
 
 use Illuminate\Http\Request;
 
@@ -85,9 +86,7 @@ class LeaveController extends Controller
         ->where('users.is_deleted', '=', 0)
         ->get();
 
-        $allLeaveinfo = employee_application::all();
-
-        //$data['leavetypevalue']   = leavestype::find($id); 
+        $allLeaveinfo = employee_application::all();             
         
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
     }
