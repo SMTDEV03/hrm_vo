@@ -23,6 +23,8 @@ class LeaveController extends Controller
         return view('pages.leavestype',compact('allLeavetypes'));
     }
 
+    /*******  Function for Add Leave Type   *******/
+
     public function add_leaves_type(Request $request){
 
         //dd($request->all()); die;
@@ -57,6 +59,8 @@ class LeaveController extends Controller
         die;         
     }
 
+    /*******  Function for Get Leave Type By ID   *******/
+
     public function leavetypebyID(Request $request,$id){
 
         if($request->ajax()){             
@@ -64,6 +68,8 @@ class LeaveController extends Controller
             return response($data);              
         }        
     }
+
+    /*******  Function for Delete Leave Type   *******/
 
     public function LeavetypeDelet(Request $request,$id)
     {
@@ -96,10 +102,9 @@ class LeaveController extends Controller
         echo 'Leave Balance: '.$total;
     }
 
-    public function add_application(Request $request){
+    /*******  Function for Add Employee Leave Application    *******/
 
-        /*dd($request);
-        die;*/
+    public function add_application(Request $request){
 
         $empApplication = new employee_application();
         $empApplication->user_id        = $request->userid; 
@@ -117,9 +122,10 @@ class LeaveController extends Controller
         } 
     }
 
-    public function approveleave(Request $request,$userid){
+    public function approveleave($userid){
 
         echo $userid;
+        //$dptcheck = DB::table('employee_application')->where('user_id',$userid);
         $ApplicationData   = employee_application::find($userid);
         dd($ApplicationData);
         die;
