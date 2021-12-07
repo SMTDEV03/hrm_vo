@@ -74,10 +74,7 @@
                         <td>{{$sr}}</td>
                         <td>                        
                           @php
-                          $test = Helper::getLeavename($allLeaveinfo->leave_type_id);                         
-                            /*if ($allLeaveinfo->leave_type_id==2) {
-                            echo 'Sick Leave';
-                          } */                                                
+                          $test = Helper::getLeavename($allLeaveinfo->leave_type_id);
                          @endphp
                          {{$test->name}}
                         </td>                        

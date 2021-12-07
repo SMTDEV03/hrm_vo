@@ -40,6 +40,9 @@
             <li><a href="{{ route('pages.leaveapprove') }}">Leave Application</a></li>            
          </ul>
       </li> 
+      <li>
+         <a href="{{route('addNotice') }}"> <i class="fa fa-bullseye"></i> <span>Notice</span> <span class="pull-right-container"> </span> </a>          
+      </li>
      </ul>
   </div>
   <!-- /.sidebar --> 
