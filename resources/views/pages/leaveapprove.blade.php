@@ -12,6 +12,12 @@
       color: #fff;
       border: none;
   } 
+  .table td, .table th {
+    padding: 5px;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+    text-align: center;
+}
   </style>
    @php 
     $user = auth()->user();        
@@ -42,8 +48,7 @@
           <div class="info-box">
             <div class="box-body">
               <div class="right-page-header">
-                <div class="d-flex">
-                 
+                <div class="d-flex">                 
                   <div class="ml-auto">
                     <input id="demo-input-search2" placeholder="search contacts" class="form-control" type="text">
                   </div>
@@ -230,6 +235,10 @@
                 $("#total").html(response);
             });
         });
-    }); 
+    });
+
+    setTimeout(function(){     
+      $("#fetchLeaveTotal").hide();
+  }, 2000 ); // 5 secs
 </script>
 @endsection

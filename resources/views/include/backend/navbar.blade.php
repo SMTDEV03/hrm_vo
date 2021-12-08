@@ -1,7 +1,7 @@
 <header class="main-header">
 
    @php 
-    $info = auth()->user();
+       $info = auth()->user();
         $logingUserID = $info->id;
         $userinfo = DB::table('users')
         ->join('profiles', 'users.id', '=', 'profiles.user_id')

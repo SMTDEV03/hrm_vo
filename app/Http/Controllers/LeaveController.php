@@ -97,15 +97,39 @@ class LeaveController extends Controller
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
     }
 
-    public function getleavebyID($id){
-                        
-        $total = DB::table('leavestypes')->sum('leave_days');        
-        //echo 'Leave Balance: '.$total;
+    /*******  Function for Get Employee Balnced Leaves    *******/
 
-        $balnceleave =  employee_application::where('user_id',$id)->get();
-        echo $balnceleave;
+    public function getleavebyID($id){                    
+            
 
-        die;
+        $totalLeave = leavestype::whereIn('name', ['Sick Leave','Earned Leave','Casual Leave'])->sum('leave_days');     
+
+        $countleave =  employee_application::where('user_id',$id)->where('leave_status','Approve')->sum('leave_duration');       
+
+        $balanceleave =  $totalLeave-$countleave;     
+        
+        $leavetable = 
+        '<span class="close">x</span>
+        <table class="table" id="leave-table">
+            <thead>
+                <tr>                
+                <th scope="col">Total Leave</th>
+                <th scope="col">Approved Leave</th>
+                <th scope="col">Balance Leave</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                
+                <td>'.$totalLeave.'</td>
+                <td>'.$countleave.'</td>
+                <td>'.$balanceleave.'</td>
+                </tr>                
+            </tbody>
+            </table>';
+            
+            echo $leavetable;
+
+
     }
 
     /*******  Function for Add Employee Leave Application    *******/
