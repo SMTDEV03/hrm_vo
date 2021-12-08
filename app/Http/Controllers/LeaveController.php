@@ -138,16 +138,23 @@ class LeaveController extends Controller
         } 
     }
 
-    public function approveleave($id){
-        $application = employee_application::where('user_id',$id)->first();  
-        $checkstatus = $application->leave_status;  
-        
+    public function approveleave($id){        
+        $application = employee_application::where('id', $id)->first();     
+        $checkstatus = $application['leave_status'];             
         if($checkstatus=='Not Approve'){
-
+            $application->leave_status = 'Approve';
+            $save = $application->save();
+            if($save){
+                return redirect()->back()->withSuccess('Leave Approved Successfully');            
+            }
+        }else{
+            $application->leave_status = 'Not Approve';
+            $save = $application->save();
+            if($save){
+                return redirect()->back()->withSuccess('Leave Not Approved Successfully');            
+            }
         }
-        //dd($application);
-        //dd($checkstatus);
-       //die;
+        
     }
 
 }

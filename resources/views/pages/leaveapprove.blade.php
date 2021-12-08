@@ -58,8 +58,10 @@
                       <th scope="col">Start Date</th>
                       <th scope="col">End Date</th>
                       <th scope="col">Apply Date</th>
-                      <th scope="col">Duration</th>
+                      <th scope="col">Duration</th> 
+                      @if($user->role == 2)
                       <th scope="col">Leave Status</th>
+                      @endif                     
                       @if($user->role == 1)
                       <th scope="col">Action</th>
                       @endif
@@ -69,7 +71,9 @@
                     @php 
                       $sr = 1;                      
                       @endphp
+                      <?php //dd($allLeaveinfo);?>
                       @foreach ( $allLeaveinfo as $allLeaveinfo ) 
+                      
                       <tr>
                         <td>{{$sr}}</td>
                         <td>                        
@@ -85,18 +89,21 @@
                         <td>-----</td> 
                         <?php }?>                                             
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->apply_date));}}</td>
-                        <td>{{ $allLeaveinfo->leave_type }}</td> 
-                        <td>                        
-                          @php
-                            if ($allLeaveinfo->leave_status='Not Approve') {
-                            echo 'Not Approve';
-                          }                                                 
+                        <td>{{ $allLeaveinfo->leave_type }}</td>
+                        @php
+                          if ($allLeaveinfo->leave_status=='Not Approve') {
+                            $status ='Not Approve';
+                          } else{
+                            $status ='Approve';
+                          }                                                
                          @endphp
-                        </td> 
-                        @if($user->role == 1)
-                        <td class="jsgrid-align-center ">                          
-                          <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->id) }}" title="Delete" class="btn btn-info">Approve</a>                                                                          
-                        </td>
+                         @if($user->role == 2) 
+                          <td>{{$status;}}</td>
+                         @endif
+                        @if($user->role == 1)                        
+                          <td class="jsgrid-align-center ">                          
+                            <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->id) }}" title="Delete" class="btn btn-info"><?php echo $status?></a>                                                                          
+                          </td>
                         @endif                                             
                       </tr>
                     @php 
