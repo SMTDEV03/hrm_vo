@@ -8,6 +8,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,12 @@ use App\Http\Controllers\NoticeController;
     Route::post('auth/save', [MainController::class, 'save'])->name('auth.save');
     Route::post('auth/check', [MainControlleR::class, 'check'])->name('auth.check');
     Route::get('/auth/login', [MainController::class, 'login'])->name('auth.login');
+
+    Route::get('forgetPassword', [ForgotPasswordController::class, 'forgetpasswordView'])->name('auth.resetview');
+    Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });
 
 

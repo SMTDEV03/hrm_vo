@@ -60,7 +60,7 @@
               <label>
                 {{-- <input type="checkbox">
                 Remember Me </label> --}}
-              <a href="pages-recover-password.html" class="pull-right"><i class="fa fa-lock"></i> Forgot pwd?</a> </div>
+                <a href="{{ route('auth.resetview')}}" class="pull-right"><i class="fa fa-lock"></i> Forgot pwd?</a> 
           </div>
           <!-- /.col -->
           <div class="col-xs-4 m-t-1">
@@ -77,7 +77,7 @@
     <!-- /.login-box-body --> 
   </div>
   <!-- /.
-<!-- /.login-box --> 
+<!- /.login-box --> 
 
 <!-- jQuery 3 --> 
 <script src="{{ asset('public/assets/js/jquery.min.js')}}"></script> 
