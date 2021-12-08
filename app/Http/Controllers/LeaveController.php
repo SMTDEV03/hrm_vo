@@ -99,37 +99,54 @@ class LeaveController extends Controller
 
     /*******  Function for Get Employee Balnced Leaves    *******/
 
-    public function getleavebyID($id){                    
-            
-
-        $totalLeave = leavestype::whereIn('name', ['Sick Leave','Earned Leave','Casual Leave'])->sum('leave_days');     
-
-        $countleave =  employee_application::where('user_id',$id)->where('leave_status','Approve')->sum('leave_duration');       
-
-        $balanceleave =  $totalLeave-$countleave;     
+    public function getleavebyID($Userid){                    
         
-        $leavetable = 
-        '<span class="close">x</span>
-        <table class="table" id="leave-table">
-            <thead>
-                <tr>                
-                <th scope="col">Total Leave</th>
-                <th scope="col">Approved Leave</th>
-                <th scope="col">Balance Leave</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>                
-                <td>'.$totalLeave.'</td>
-                <td>'.$countleave.'</td>
-                <td>'.$balanceleave.'</td>
-                </tr>                
-            </tbody>
-            </table>';
-            
-            echo $leavetable;
+        //echo $id;
 
+        $userinfo = DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->select('users.*', 'profiles.*') 
+        ->where('users.id', '=', $Userid)        
+        ->where('users.is_deleted', '=', 0)
+        ->get();
 
+        //dd($userinfo);
+
+        $gender = $userinfo[0]->gender;
+        
+        if(!empty($gender))
+        {
+            if($gender =='F'){
+
+                $totalLeave = leavestype::whereIn('name', ['Sick Leave','Earned Leave','Casual Leave','Medical Leave'])->sum('leave_days');     
+            }else{
+                $totalLeave = leavestype::whereIn('name', ['Sick Leave','Earned Leave','Casual Leave'])->sum('leave_days');        
+            }           
+
+            $countleave =  employee_application::where('user_id',$Userid)->where('leave_status','Approve')->sum('leave_duration');       
+
+            $balanceleave =  $totalLeave-$countleave;     
+        
+            $leavetable = 
+            '<table class="table" id="leave-table">
+                <thead>
+                    <tr>                
+                    <th scope="col">Total Leave</th>
+                    <th scope="col">Approved Leave</th>
+                    <th scope="col">Balance Leave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>                
+                    <td>'.$totalLeave.'</td>
+                    <td>'.$countleave.'</td>
+                    <td>'.$balanceleave.'</td>
+                    </tr>                
+                </tbody>
+                </table>';
+                
+                echo $leavetable;
+        }
     }
 
     /*******  Function for Add Employee Leave Application    *******/
@@ -142,7 +159,7 @@ class LeaveController extends Controller
             $datetime1 = new DateTime($request->startdate);
             $datetime2 = new DateTime($request->end_date);
             $interval  = $datetime1->diff($datetime2);
-            $days      = $interval->format('%a');//now do whatever you like with $days
+            $days      = $interval->format('%a')+1;//now do whatever you like with $days
         }
 
         $empApplication = new employee_application();

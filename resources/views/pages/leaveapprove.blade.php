@@ -89,12 +89,12 @@
                         </td>                        
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       
-                        <td><?php date('jS \of F Y',strtotime($allLeaveinfo->end_date))?></td>
+                        <td><?php echo date('jS \of F Y',strtotime($allLeaveinfo->end_date))?></td>
                         <?php } else{ ?> 
                         <td>-----</td> 
                         <?php }?>                                             
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->apply_date));}}</td>
-                        <td>{{ $allLeaveinfo->leave_type }}</td>
+                        <td>{{ $allLeaveinfo->leave_type.' ('.$allLeaveinfo->leave_duration. ')'}}</td>
                         @php
                           if ($allLeaveinfo->leave_status=='Not Approve') {
                             $status ='Not Approve';
@@ -233,12 +233,13 @@
             }).done(function (response) {
                 console.log(response);
                 $("#total").html(response);
+                setTimeout(function(){
+                $("#leave-table").css("display", "none");                   
+                    //$("#fetchLeaveTotal").hide();
+                },15000 ); 
             });
         });
     });
-
-    setTimeout(function(){     
-      $("#fetchLeaveTotal").hide();
-  }, 2000 ); // 5 secs
+    
 </script>
 @endsection
