@@ -13,7 +13,7 @@
       <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li class="sub-bread"><i class="fa fa-angle-right"></i> Forms</li>
-        <li><i class="fa fa-angle-right"></i> User Profile</li>
+        <li><i class="fa fa-angle-right"></i> Employee Profile</li>
       </ol>
     </div>
     
@@ -30,7 +30,7 @@
                 {{ Session::get('fail' )}}
             </div>  
             @endif
-        <h4 class="text-black">User Profile</h4>
+        <h4 class="text-black">Employee Profile</h4>
         <form action="{{ route('profileUpdate') }}" method="post">
           @csrf
         <div class="row">
@@ -133,3 +133,8 @@
       
   @endforeach
   @endsection
+  <script>
+    setTimeout(function(){
+      $("div.alert").remove();
+  }, 2000 ); // 5 secs
+  </script>
