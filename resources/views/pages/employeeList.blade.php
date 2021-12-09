@@ -72,7 +72,7 @@
                     @endphp
                     <tr>
                       <td>{{$sr}}</td>
-                      <td><a href="#">{{ ucfirst($userinfo->fname) .' '. ucfirst($userinfo->lname)}}</a></td>
+                      <td><a href="{{route('userProfile', $userinfo->user_id)}}">{{ ucfirst($userinfo->fname) .' '. ucfirst($userinfo->lname)}}</a></td>
                       <td>{{ $userinfo->email }}</td>
                       <td>+91-123456789</td>
                       <td>Designer</td>

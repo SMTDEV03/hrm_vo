@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('addNotice', [NoticeController::class, 'index'])->name('addNotice');
         Route::Post('noticeStore', [NoticeController::class, 'add_notice'])->name('noticeStore');
         Route::get('deleteNotice/{id}', [NoticeController::class, 'noticeDelete'])->name('deleteNotice');
+        Route::get('userProfile/{id}', [HomeController::class, 'userProfile'])->name('userProfile');
     });
 
     // user routes
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
         Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('admin.fetchleave'); 
         Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');       
+        
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
     });

@@ -101,4 +101,22 @@ class HomeController extends Controller
         
     }
 
+    public function userProfile($id){
+        $users = DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->select('users.*', 'profiles.*')
+        ->where('users.id', '=', $id)
+        ->where('users.role', '=', 2)
+        ->where('users.is_deleted', '=', 0)
+        ->get(); 
+        foreach($users as $data){
+            $desid = $data->designation;
+            $depid = $data->department;
+
+        }
+        $allDesignation = designation::find($desid);
+        $allDepart = department::find($depid);
+        return view('pages.userprofile', compact('users', 'allDesignation', 'allDepart'));
+    }
+
 }
