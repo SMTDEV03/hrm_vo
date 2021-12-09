@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::Post('noticeStore', [NoticeController::class, 'add_notice'])->name('noticeStore');
         Route::get('deleteNotice/{id}', [NoticeController::class, 'noticeDelete'])->name('deleteNotice');
         Route::get('userProfile/{id}', [HomeController::class, 'userProfile'])->name('userProfile');
+        //Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     });
 
     // user routes
@@ -70,7 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', [HomeController::class, 'user_profile'])->name('pages.profile');
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
         Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('admin.fetchleave'); 
-        Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');       
+        Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');        
         
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
@@ -78,5 +79,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
     Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
     Route::get('/auth/logout', [MainController::class, 'logout'])->name('auth.logout');
-
 });
