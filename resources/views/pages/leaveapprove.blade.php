@@ -1,7 +1,9 @@
 @extends('layout.master')
 @section('title', 'Home')
 @section('content')
-@php use App\Helpers\Helper; @endphp
+@php 
+use App\Helpers\Helper;
+@endphp
 <style>
   .leavetype {
       padding: 8px;
@@ -83,9 +85,9 @@
                         <td>{{$sr}}</td>
                         <td>                        
                           @php
-                          $test = Helper::getLeavename($allLeaveinfo->leave_type_id);
+                          $leaveType = Helper::getLeavename($allLeaveinfo->leave_type_id);
                          @endphp
-                         {{$test->name}}
+                         {{$leaveType->name}}
                         </td>                        
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       

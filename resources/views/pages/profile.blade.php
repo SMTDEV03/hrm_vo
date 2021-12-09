@@ -1,6 +1,9 @@
 @extends('layout.master')
 @section('title', 'Home')
-@section('content') 
+@section('content')
+@php 
+use App\Helpers\Helper;
+@endphp 
 
   @foreach ($profiledata as $profileinfo)
 
@@ -16,117 +19,105 @@
         <li><i class="fa fa-angle-right"></i> Employee Profile</li>
       </ol>
     </div>
-    
-    <!-- Main content -->
+    <h4 class="text-black" style="margin-left:20px;">Employee Profile</h4>
     <div class="content">
-      <div class="info-box">
-        @if(Session::get('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success' )}}
-        </div>
-        @endif
-            @if(Session::get('fail'))
-            <div class="alert alert-danger">
-                {{ Session::get('fail' )}}
-            </div>  
-            @endif
-        <h4 class="text-black">Employee Profile</h4>
-        <form action="{{ route('profileUpdate') }}" method="post">
-          @csrf
-        <div class="row">
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>First Name</label>
-              <input class="form-control" name="fname" value="{{$profileinfo->fname}}" id="fname" type="text">
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Last Name</label>              
-              <input class="form-control" name="lname" value="{{$profileinfo->lname}}" id="lname" type="text">
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Email Address</label>
-              <input class="form-control" name="email" value="{{$profileinfo->email}}" id="email" type="email">
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Date of Birth</label>
-              <input class="form-control" id="dob" value="{{$profileinfo->dob}}" name="dob" type="date">
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <div class="form-group">
-              <label>Gender :</label>
-              <select name="gender" id="gender" class="form-control">
-                <option value="M">Male</option>
-                <option value="F">Female</option>                
-              </select>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="user-profile-box m-b-3">
+            <div class="box-profile text-white"> <img class="profile-user-img img-responsive img-circle m-b-2" src="dist/img/img1.jpg" alt="User profile picture">              
             </div>
           </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Date of Joining</label>
-              <input class="form-control" name="doj" value="{{ $profileinfo->doj }}" id="doj" type="date">
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Contact No</label>
-              <input class="form-control" name="contact" value="{{$profileinfo->contact}}" id="basicInput" type="text">
-            </fieldset>
-          </div>         
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Department</label>
-              <select name="department" id="department" class="form-control">
-                <option value="">Select Department</option>
-                @foreach ($allDepart as $allDepart)                 
-                <option value='{{$allDepart->id }}' @if ($profileinfo->department == $allDepart->id) {{ 'selected' }}@endif>{{ $allDepart->department_name }}</option>                
-                @endforeach
-              </select>
-            </fieldset> 
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Designation</label>
-              <select name="designation" id="designation" class="form-control">
-                <option value="">Select Designation</option>
-                @foreach ($allDesignation as $allDesignation)               
-                <option value="{{ $allDesignation->id }}" {{$profileinfo->designation == $allDesignation->id  ? 'selected' : ''}}>{{ $allDesignation->des_name}}</option>                
-                @endforeach
-              </select>              
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group">
-              <label>Blood Group</label>
-              <select name="blood_group" id="blood_group" class="form-control">
-                <option value="O+" @if ($profileinfo->blood_group == "O+") {{ 'selected' }} @endif>O+</option>
-                <option value="O-" @if ($profileinfo->blood_group == "O-") {{ 'selected' }} @endif>O-</option>  
-                <option value="A+" @if ($profileinfo->blood_group == "A+") {{ 'selected' }} @endif>A+</option>  
-                <option value="A-" @if ($profileinfo->blood_group == "A-") {{ 'selected' }} @endif>A-</option>  
-                <option value="B+" @if ($profileinfo->blood_group == "B+") {{ 'selected' }} @endif>B+</option>  
-                <option value="B-" @if ($profileinfo->blood_group == "B-") {{ 'selected' }} @endif>B-</option>              
-                <option value="AB+" @if ($profileinfo->blood_group == "AB+") {{ 'selected' }} @endif>AB+</option>                 
-              </select> 
-            </fieldset>
-          </div>
-          <div class="col-lg-4">
-            <fieldset class="form-group" style="margin-top:30px;"> 
-                <input class="form-control" name="user_id" value="{{$profileinfo->user_id}}"  type="hidden">        
-                <button type="submit" class="btn btn-primary">Update</button>     
-            </fieldset>
+          <div class="info-box">
+            <div class="box-body">               
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Present Address</strong>
+              <p class="text-muted">Malibu, California</p>
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Permanent Address </strong>
+              <p class="text-muted">alexanderpierce@gmail.com</p>
+              <hr>
+              <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+              <p>(123) 456-7890 </p>
+              <hr>              
+            </div>
+            <!-- /.box-body --> 
           </div>
         </div>
-        </form>       
-        <hr class="m-t-3 m-b-3">       
+        <div class="col-lg-8">
+          <div class="info-box">
+            <div class="card tab-style1"> 
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs profile-tab" role="tablist">                
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">Profile</a> </li>                
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">                
+                <!--second tab-->
+                <div class="tab-pane active" id="profile" role="tabpanel" aria-expanded="false">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Full Name</strong> <br>
+                        <p class="text-muted">{{$profileinfo->fname.' '.$profileinfo->lname}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Mobile</strong> <br>
+                        <p class="text-muted">{{$profileinfo->contact}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Email</strong> <br>
+                        <p class="text-muted">{{$profileinfo->email}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Date of Birth</strong> <br>
+                        <p class="text-muted">{{$profileinfo->dob}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Date of Joining</strong> <br>
+                        <p class="text-muted">{{$profileinfo->doj}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Blood Group</strong> <br>
+                        <p class="text-muted">{{$profileinfo->blood_group}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Department</strong> <br>
+                        <p class="text-muted">
+                          @php
+                          $empdepartment = Helper::getDepartment($profileinfo->department);
+                          @endphp
+                         {{$empdepartment->department_name}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Designation</strong> <br>
+                        <p class="text-muted">
+                          @php
+                          $empdepartment = Helper::getDesignation($profileinfo->designation);
+                          @endphp
+                         {{$empdepartment->des_name}}</p>
+                      </div>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Gender</strong> <br>
+                        @php 
+                         if($profileinfo->gender=="M"){
+                           $gender= 'Male';
+                         }else{
+                          $gender= 'Female';
+                         }                         
+                        @endphp
+                        <p class="text-muted">{{$gender}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- Main row --> 
-    </div>
+    </div>    
     <!-- /.content --> 
   </div>
   <!-- /.content-wrapper -->
