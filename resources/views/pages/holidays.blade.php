@@ -117,7 +117,6 @@ a:hover, a:active, a:focus {
                   <input type="date" name="enddate" class="form-control mydatetimepickerFull" id="date2" value="">
               </div>             
           </div>
-
           <div class="modal-footer">
           <input type="hidden" name="id" value="" class="form-control" id="recipient-name1">                                       
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
