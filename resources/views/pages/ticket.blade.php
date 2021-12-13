@@ -88,26 +88,26 @@
                      $department = Helper::getDepartment($info->department_id);  
                      $showstatus = Helper::getstatusbyID($info->status_id);                    
                      @endphp                    
-                     <tr>
+                     <tr id="{{$info->id}}">
                       <td>{{ $sr  }}</td>
                       <td> {{ $info->subject}} </td>                   
                       <td> {{ $info->ticket_summary}} </td> 
                       <td>
                         <?php if($department){?> 
                         {{$department->department_name}}
-                       <?php }?>
+                       <?php } ?>
                       </td>
                       <td> 
-                      @if($auth->role==2) 
-                        {{$showstatus->name}} 
-                      @else 
-                        <select class="form-control" name="status" id="status_id">                          
-                          @foreach ($status as $s )                        
-                          <option value="{{ $s->id }}" {{$info->status_id == $s->id  ? 'selected' : ''}} data-name= "{{$info->id}}">{{ $s->name}}</option>
-                          @endforeach
-                        </select>
-                        <input type="hidden" name="ticket_id" value="{{ $info->id }}"  id="tktid">
-                      @endif
+                        @if($auth->role==2) 
+                          {{$showstatus->name}} 
+                        @else 
+                          <select class="form-control" name="status" id="status_id">                          
+                            @foreach ($status as $s )                        
+                            <option value="{{ $s->id }}" {{$info->status_id == $s->id  ? 'selected' : ''}} data-name= "{{$info->id}}">{{ $s->name}}</option>
+                            @endforeach
+                          </select>
+                          <input type="hidden" name="ticket_id" value="{{ $info->id }}"  id="tktid">
+                        @endif
                       </td>
                     </tr> 
                     @php 
@@ -189,10 +189,11 @@
   //$("#status_id").on('change', function (e) {
   $('select[name="status"]').on('change', function(e) {
       e.preventDefault(e);        
-      var status_id = this.value;
+      //var status_id = this.value;
+      alert($(this).attr('id'));
       // var tcktId = this.value;
-      var tcktId = $('#tktid').val();
-      alert(tcktId);
+      //var tcktId = $('#tktid').val();
+      //alert(tcktId);
       //console.log(ticket_id);
       return false;
           $.ajax({ 
