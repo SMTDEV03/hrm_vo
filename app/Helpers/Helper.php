@@ -6,6 +6,7 @@ use App\Models\designation;
 use App\Models\department;
 use App\Models\profile;
 use App\Models\User;
+use App\Models\Status;
 
 class Helper{
 
@@ -39,6 +40,16 @@ class Helper{
         $deptname = department::find($id);
 
         return $deptname;
+
+    }
+
+    /*** Function for Get Ticket Status ****/
+
+    public static function getstatusbyID($id)
+    {
+
+        $status = Status::find($id);
+        return $status;
 
     }
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 use App\Models\designation;
 use App\Models\department;
 use App\Models\profile;
@@ -24,7 +23,6 @@ class HolidayController extends Controller
 
     public function add_holiday(Request $request)
     {
-        
         $holiday = new holidays();        
         $holidayId = $request->id;
         $sdate   = $request->startdate;
@@ -33,15 +31,11 @@ class HolidayController extends Controller
         $date2 = new DateTime($edate);
         $diff = date_diff($date1,$date2);
         $nofdate = $diff->format("%a");
-
         $year    = date('m-Y',strtotime($sdate)); 
 
         /***For Add New Leave Type***/
         if(empty($holidayId))
         {          
-
-                      
-
             $holiday->holiday_name      = $request->holiname;
             $holiday->from_date         = $request->startdate;
             $holiday->to_date           = $request->enddate;
@@ -54,8 +48,6 @@ class HolidayController extends Controller
             }   
         }else{
          /***For Edit Holiday***/ 
-         
-            
             $holidaysData               = holidays::find($holidayId);
             $holidaysData->holiday_name      = $request->holiname;
             $holidaysData->from_date         = $request->startdate;
@@ -66,12 +58,11 @@ class HolidayController extends Controller
             if($save){
                 return redirect()->back();
             }
-        }
+        } 
                  
     }
 
     public function holidaybyID(Request $request,$id){
-
         if($request->ajax()){             
             $data['holidayvalue']   = holidays::find($id);           
             return response($data);              
@@ -80,11 +71,9 @@ class HolidayController extends Controller
 
     public function holidayDelet(Request $request,$id)
     {
-        $success    = holidays::destroy($id);
+        $success = holidays::destroy($id);
         if($success){
             return redirect()->back()->withSuccess('Holiday Delete Successfully');
         }
     }
-
-
 }

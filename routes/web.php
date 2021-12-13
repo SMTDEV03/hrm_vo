@@ -9,6 +9,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/profileUpdate', [HomeController::class, 'updateProfile'])->name('profileUpdate');
         Route::post('getleavebyID/{id?}', [LeaveController::class, 'getleavebyID'])->name('admin.fetchleave'); 
         Route::post('addapplication', [LeaveController::class, 'add_application'])->name('admin.addapplication');        
+        Route::post('/add_newTicket', [TicketController::class, 'add_newTicket'])->name('add_newTicket'); 
         
         //Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
        
@@ -79,4 +81,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('allholidays', [HolidayController::class, 'index'])->name('pages.holidays');
     Route::get('leaveapprove', [LeaveController::class, 'leaveapplication'])->name('pages.leaveapprove');
     Route::get('/auth/logout', [MainController::class, 'logout'])->name('auth.logout');
+    Route::get('ticket', [TicketController::class, 'index'])->name('ticket');
+    Route::post('updatetktstatus/{id?}', [TicketController::class, 'updateTicketStatus'])->name('updatetktstatus');
 });

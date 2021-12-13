@@ -43,6 +43,9 @@
       <li>
          <a href="{{route('addNotice') }}"> <i class="fa fa-bullseye"></i> <span>Notice</span> <span class="pull-right-container"> </span> </a>          
       </li>
+      <li >
+         <a href="{{ route('ticket')}}"> <i class="fa fa-bullseye"></i> <span>Ticket</span> <span class="pull-right-container"> </span> </a>          
+      </li>
      </ul>
   </div>
   <!-- /.sidebar --> 

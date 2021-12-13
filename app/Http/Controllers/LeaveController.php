@@ -195,9 +195,7 @@ class LeaveController extends Controller
                 return redirect()->back()->withSuccess('Leave Not Approved Successfully');            
             }
         }
-        
     }
-
 }
 
 
