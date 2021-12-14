@@ -103,7 +103,7 @@
                         @else 
                           <select class="form-control" name="status" id="status_id">                          
                             @foreach ($status as $s )                        
-                            <option value="{{ $s->id }}" {{$info->status_id == $s->id  ? 'selected' : ''}} data-name= "{{$info->id}}">{{ $s->name}}</option>
+                            <option value="{{$s->id}}" {{$info->status_id == $s->id  ? 'selected' : ''}} data-name= "{{$info->id}}">{{ $s->name}}</option>
                             @endforeach
                           </select>
                           <input type="hidden" name="ticket_id" value="{{ $info->id }}"  id="tktid">
