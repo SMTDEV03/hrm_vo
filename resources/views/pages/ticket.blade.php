@@ -97,16 +97,16 @@
                         {{$department->department_name}}
                        <?php } ?>
                       </td>
+                      
                       <td> 
                         @if($auth->role==2) 
                           {{$showstatus->name}} 
                         @else 
-                          <select class="form-control" name="status" id="status_id">                          
+                          <select class="form-control" name="status" id="status_id"  data="{{$info->id}}" >                          
                             @foreach ($status as $s )                        
-                            <option value="{{$s->id}}" {{$info->status_id == $s->id  ? 'selected' : ''}} data-name= "{{$info->id}}">{{ $s->name}}</option>
+                            <option data="{{$info->id}}" value="{{$s->id}}" {{$info->status_id == $s->id  ? 'selected' : ''}} >{{ $s->name}}</option>
                             @endforeach
-                          </select>
-                          <input type="hidden" name="ticket_id" value="{{ $info->id }}"  id="tktid">
+                          </select>                          
                         @endif
                       </td>
                     </tr> 
@@ -186,13 +186,16 @@
         }
   });
 
+
+
   //$("#status_id").on('change', function (e) {
   $('select[name="status"]').on('change', function(e) {
       e.preventDefault(e);        
       //var status_id = this.value;
-      alert($(this).attr('id'));
+      console.log($(this).attr('data'));
+      console.log($(this).val());
       // var tcktId = this.value;
-      //var tcktId = $('#tktid').val();
+      //var tcktId = $('.tktid').val();
       //alert(tcktId);
       //console.log(ticket_id);
       return false;
