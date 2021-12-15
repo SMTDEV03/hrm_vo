@@ -70,12 +70,11 @@
                 <table id="example2" class="table table-bordered table-hover no-wrap">
                   <thead>                      
                     <tr>
-                      <th> Sr No</th>
-                      <th> Subject</th>
-                      <th> Ticket Summary </th>                      
-                      <th> Department</th>
-                      <th> Status </th>
-                      <th>  </th>
+                      <th>Sr No</th>
+                      <th>Subject</th>
+                      <th>Ticket Summary </th>                      
+                      <th>Department</th>
+                      <th>Status </th>                     
                     </tr>
                   </thead>
                   <tbody>
@@ -89,15 +88,14 @@
                      $showstatus = Helper::getstatusbyID($info->status_id);                    
                      @endphp                    
                      <tr id="{{$info->id}}">
-                      <td>{{ $sr  }}</td>
-                      <td> {{ $info->subject}} </td>                   
-                      <td> {{ $info->ticket_summary}} </td> 
+                      <td>{{$sr}}</td>
+                      <td>{{$info->subject}} </td>                   
+                      <td>{{$info->ticket_summary}} </td> 
                       <td>
                         <?php if($department){?> 
                         {{$department->department_name}}
                        <?php } ?>
-                      </td>
-                      
+                      </td>                      
                       <td> 
                         @if($auth->role==2) 
                           {{$showstatus->name}} 
