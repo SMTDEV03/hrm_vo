@@ -74,7 +74,8 @@
                       <th>Subject</th>
                       <th>Ticket Summary</th>                      
                       <th>Department</th>
-                      <th>Status </th>                     
+                      <th>Status </th>
+                      <th>Action </th>                     
                     </tr>
                   </thead>
                   <tbody>
@@ -100,11 +101,12 @@
                         @if($auth->role==2) 
                           {{$showstatus->name}} 
                         @else 
-                          <select class="form-control" name="status" id="status_id"  data="{{$info->id}}" >                          
+                        <a class="btn btn-primary" href="">View</a>
+                          <?php /*<select class="form-control" name="status" id="status_id"  data="{{$info->id}}" >                          
                             @foreach ($status as $s )                        
                             <option data="{{$info->id}}" value="{{$s->id}}" {{$info->status_id == $s->id  ? 'selected' : ''}} >{{ $s->name}}</option>
                             @endforeach
-                          </select>                          
+                          </select> */?>                         
                         @endif
                       </td>
                      </tr> 
@@ -139,23 +141,23 @@
               <form role="form" method="post" action="{{ route('add_newTicket') }}" enctype="multipart/form-data" >
                 @csrf
               <div class="modal-body">
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Employee</label>
-                        <input type="text" name="employee" value="{{ $user->fname.' '. $user->lname}}" class="form-control" id="employee">
-                    </div>                    
-                    <div class="form-group">
-                        <label for="message-text" class="control-label" required>Subject</label>
-                        <input type="text" name="subject" class="form-control" id="subject">
-                    </div>
-                    <div class="form-group">
-                      <label for="message-text" class="control-label" required>Department</label>
-                      <select class="form-control" name="department">
-                        <option value="" selected> Choose one </option>
-                        @foreach ($departments as $departments )
-                        <option value="{{$departments->id}}"> {{$departments->department_name}} </option>
-                        @endforeach
-                      </select>                                    
-                    </div>                   
+                  <div class="form-group">
+                      <label for="message-text" class="control-label">Employee</label>
+                      <input type="text" name="employee" value="{{ $user->fname.' '. $user->lname}}" class="form-control" id="employee">
+                  </div>                    
+                  <div class="form-group">
+                      <label for="message-text" class="control-label" required>Subject</label>
+                      <input type="text" name="subject" class="form-control" id="subject">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="control-label" required>Department</label>
+                    <select class="form-control" name="department">
+                      <option value="" selected> Choose one </option>
+                      @foreach ($departments as $departments )
+                      <option value="{{$departments->id}}"> {{$departments->department_name}} </option>
+                      @endforeach
+                    </select>                                    
+                  </div>                   
                   <div class="form-group">
                       <label for="message-text" class="control-label" required>Ticket Summary</label>
                       <textarea name="ticket_summary"  class="form-control" id="recipient-name1"></textarea>
