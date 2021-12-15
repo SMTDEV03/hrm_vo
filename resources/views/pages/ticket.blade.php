@@ -72,7 +72,7 @@
                     <tr>
                       <th>Sr No</th>
                       <th>Subject</th>
-                      <th>Ticket Summary </th>                      
+                      <th>Ticket Summary</th>                      
                       <th>Department</th>
                       <th>Status </th>                     
                     </tr>
