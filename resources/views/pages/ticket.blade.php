@@ -107,7 +107,7 @@
                           </select>                          
                         @endif
                       </td>
-                    </tr> 
+                     </tr> 
                     @php 
                     $sr++;                      
                     @endphp                     
