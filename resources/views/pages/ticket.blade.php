@@ -139,31 +139,31 @@
               <form role="form" method="post" action="{{ route('add_newTicket') }}" enctype="multipart/form-data" >
                 @csrf
               <div class="modal-body">
-                      <div class="form-group">
-                          <label for="message-text" class="control-label">Employee</label>
-                          <input type="text" name="employee" value="{{ $user->fname.' '. $user->lname}}" class="form-control" id="employee">
-                      </div>                    
-                      <div class="form-group">
-                          <label for="message-text" class="control-label" required>Subject</label>
-                          <input type="text" name="subject" class="form-control" id="subject">
-                      </div>
-                      <div class="form-group">
-                        <label for="message-text" class="control-label" required>Department</label>
-                        <select class="form-control" name="department">
-                          <option value="" selected> Choose one </option>
-                          @foreach ($departments as $departments )
-                          <option value="{{$departments->id}}"> {{$departments->department_name}} </option>
-                          @endforeach
-                        </select>                                    
-                      </div>                   
                     <div class="form-group">
-                        <label for="message-text" class="control-label" required>Ticket Summary</label>
-                        <textarea name="ticket_summary"  class="form-control" id="recipient-name1"></textarea>
+                        <label for="message-text" class="control-label">Employee</label>
+                        <input type="text" name="employee" value="{{ $user->fname.' '. $user->lname}}" class="form-control" id="employee">
+                    </div>                    
+                    <div class="form-group">
+                        <label for="message-text" class="control-label" required>Subject</label>
+                        <input type="text" name="subject" class="form-control" id="subject">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label" required>Attachment</label>
-                        <input type="file" name="file" class="form-control" id="file"></textarea>
-                    </div>                    
+                      <label for="message-text" class="control-label" required>Department</label>
+                      <select class="form-control" name="department">
+                        <option value="" selected> Choose one </option>
+                        @foreach ($departments as $departments )
+                        <option value="{{$departments->id}}"> {{$departments->department_name}} </option>
+                        @endforeach
+                      </select>                                    
+                    </div>                   
+                  <div class="form-group">
+                      <label for="message-text" class="control-label" required>Ticket Summary</label>
+                      <textarea name="ticket_summary"  class="form-control" id="recipient-name1"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="message-text" class="control-label" required>Attachment</label>
+                      <input type="file" name="file" class="form-control" id="file"></textarea>
+                  </div>                    
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
