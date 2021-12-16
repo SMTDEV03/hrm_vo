@@ -7,6 +7,7 @@ use App\Models\department;
 use App\Models\profile;
 use App\Models\User;
 use App\Models\Status;
+use Illuminate\Support\Facades\DB;
 
 class Helper{
 
@@ -52,6 +53,24 @@ class Helper{
         return $status;
 
     }
+
+     /*** Function for Get Employee NAme ****/
+
+     public static function getemployeeName($userid)
+     {
+ 
+        $userinfo = DB::table('users')
+        ->join('profiles', 'users.id', '=', 'profiles.user_id')
+        ->select('users.*', 'profiles.*') 
+        ->where('users.id', '=', $userid)        
+        ->where('users.is_deleted', '=', 0)
+        ->get();
+
+        return $userinfo;
+ 
+     }
+
+
 
 }
 

@@ -60,8 +60,9 @@ use App\Helpers\Helper;
                 <table id="example2" class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Sr No</th>
-                      <th scope="col">Leave Type</th>                      
+                      <th scope="col">Sr No</th>                       
+                      <th scope="col">Leave Type</th>
+                      <th scope="col">Emp Name</th>                      
                       <th scope="col">Start Date</th>
                       <th scope="col">End Date</th>
                       <th scope="col">Apply Date</th>
@@ -83,11 +84,17 @@ use App\Helpers\Helper;
                       
                       <tr>
                         <td>{{$sr}}</td>
+                        <td>
+                          @php 
+                           $leaveType = Helper::getLeavename($allLeaveinfo->leave_type_id);
+                          @endphp
+                          {{$leaveType->name}}
+                          </td>
                         <td>                        
                           @php
-                          $leaveType = Helper::getLeavename($allLeaveinfo->leave_type_id);
+                          $userArr = Helper::getemployeeName($allLeaveinfo->user_id);                        
                          @endphp
-                         {{$leaveType->name}}
+                         {{$userArr[0]->fname}}                         
                         </td>                        
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       
