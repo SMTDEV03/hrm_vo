@@ -62,15 +62,13 @@
                           <p class="text-muted">{{$userinfo->blood_group}}</p>
                         </div>
                       </div>   
-                      <div class="row">
-                                                                                         
+                      <div class="row">                                                                                         
                         <div class="col-lg-4 col-xs-6 b-r"> <strong>Department</strong> <br>
-                          <p class="text-muted">{{ $allDepart->department_name}}</p>
+                          <p class="text-muted">{{$allDepart->department_name}}</p>
                         </div>
                         <div class="col-lg-4 col-xs-6 b-r"> <strong>Designation</strong> <br>
-                          <p  class="text-muted">   {{$allDesignation->des_name}}                                                                                          </p>
-                        </div>
-                    
+                          <p  class="text-muted">{{$allDesignation->des_name}}                                                                                          </p>
+                        </div>                    
                       </div>                       
                   </div>
                   @endforeach
