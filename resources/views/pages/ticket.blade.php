@@ -100,8 +100,8 @@
                       <td> 
                         @if($auth->role==2) 
                           {{$showstatus->name}} 
-                        @else 
-                        <a class="btn btn-primary" href="">View</a>
+                        @else
+                        <a class="btn btn-primary" href="javasciprt:void(0);">{{$showstatus->name}}</a>                        
                           <?php /*<select class="form-control" name="status" id="status_id"  data="{{$info->id}}" >                          
                             @foreach ($status as $s )                        
                             <option data="{{$info->id}}" value="{{$s->id}}" {{$info->status_id == $s->id  ? 'selected' : ''}} >{{ $s->name}}</option>
@@ -109,6 +109,7 @@
                           </select> */?>                         
                         @endif
                       </td>
+                      <td><a class="btn btn-primary" href="javasciprtvoid(0)">View</a></td>
                      </tr> 
                     @php 
                     $sr++;                      
