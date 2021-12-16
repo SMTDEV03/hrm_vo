@@ -80,8 +80,7 @@ use App\Helpers\Helper;
                       $sr = 1;                      
                       @endphp
                       <?php //dd($allLeaveinfo);?>
-                      @foreach ( $allLeaveinfo as $allLeaveinfo ) 
-                      
+                      @foreach ( $allLeaveinfo as $allLeaveinfo )                      
                       <tr>
                         <td>{{$sr}}</td>
                         <td>
