@@ -36,22 +36,21 @@
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">               
-                <!--second tab-->
-           
+                <!--second tab-->           
                 <div class="tab-pane active" id="profile" role="tabpanel" aria-expanded="false">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Full Name:</strong> <br>
-                        <p class="text-muted"> {{ $userinfo->fname.' '.$userinfo->lname}}</p>
-                      </div>
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Email:</strong> <br>
-                        <p class="text-muted">{{$userinfo->email}}</p>
-                      </div>
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Contact:</strong> <br>
-                        <p class="text-muted">{{$userinfo->contact}}</p>
-                      </div>
-                    </div>  
-                    <div class="row">
+                      <div class="row">
+                        <div class="col-lg-4 col-xs-6 b-r"> <strong>Full Name:</strong> <br>
+                          <p class="text-muted"> {{ $userinfo->fname.' '.$userinfo->lname}}</p>
+                        </div>
+                        <div class="col-lg-4 col-xs-6 b-r"> <strong>Email:</strong><br>
+                          <p class="text-muted">{{$userinfo->email}}</p>
+                        </div>
+                        <div class="col-lg-4 col-xs-6 b-r"> <strong>Contact:</strong><br>
+                          <p class="text-muted">{{$userinfo->contact}}</p>
+                        </div>
+                      </div>  
+                      <div class="row">
                         <div class="col-lg-4 col-xs-6 b-r"> <strong>DOB</strong> <br>
                           <p class="text-muted">{{$userinfo->dob}}</p>
                         </div>
