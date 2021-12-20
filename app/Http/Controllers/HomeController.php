@@ -77,7 +77,6 @@ class HomeController extends Controller
         }else{
             return back()                                                       
             ->with('fail', 'something went wrong');
-
         }
 
     }
