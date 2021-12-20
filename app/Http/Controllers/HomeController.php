@@ -72,10 +72,8 @@ class HomeController extends Controller
         $updtprofile->blood_group   = $request->blood_group;
         $save = $updtprofile->save();
         if($save){
-
             return back()
             ->with('success', 'Profile Updated Successfully');
-
         }else{
             return back()                                                       
             ->with('fail', 'something went wrong');
