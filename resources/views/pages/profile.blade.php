@@ -54,7 +54,7 @@ use App\Helpers\Helper;
                 <!--second tab-->
                 <div class="tab-pane active" id="profile" role="tabpanel" aria-expanded="false">
                   <div class="card-body">
-                    <div class="row">
+                    <div class="row">                      
                       <div class="col-lg-4 col-xs-6 b-r"> <strong>Full Name</strong> <br>
                         <p class="text-muted">{{$profileinfo->fname.' '.$profileinfo->lname}}</p>
                       </div>
@@ -120,8 +120,7 @@ use App\Helpers\Helper;
     </div>    
     <!-- /.content --> 
   </div>
-  <!-- /.content-wrapper -->
-      
+  <!-- /.content-wrapper -->      
   @endforeach
   @endsection
   <script>

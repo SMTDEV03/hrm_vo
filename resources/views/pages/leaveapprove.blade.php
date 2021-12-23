@@ -88,7 +88,7 @@ use App\Helpers\Helper;
                            $leaveType = Helper::getLeavename($allLeaveinfo->leave_type_id);
                           @endphp
                           {{$leaveType->name}}
-                          </td>
+                        </td>
                         <td>                        
                           @php
                           $userArr = Helper::getemployeeName($allLeaveinfo->user_id);                        
@@ -188,7 +188,7 @@ use App\Helpers\Helper;
                       <label class="control-label">Reason</label>
                       <textarea class="form-control" cols="5" rows="5" name="reason" id="message-text1" required ></textarea>                                                
                   </div>                  
-              </div>              
+              </div>                
               <div class="modal-footer">
                   <input type="hidden" name="userid" class="form-control" id="userid" value="{{$userinfo[0]->user_id}}">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
