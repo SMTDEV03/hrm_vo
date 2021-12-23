@@ -23,15 +23,15 @@ class HolidayController extends Controller
 
     public function add_holiday(Request $request)
     {
-        $holiday = new holidays();        
-        $holidayId = $request->id;
-        $sdate   = $request->startdate;
-        $edate   = $request->enddate;
-        $date1 = new DateTime($sdate);
-        $date2 = new DateTime($edate);
-        $diff = date_diff($date1,$date2);
-        $nofdate = $diff->format("%a");
-        $year    = date('m-Y',strtotime($sdate)); 
+        $holiday    = new holidays();        
+        $holidayId  = $request->id;
+        $sdate      = $request->startdate;
+        $edate      = $request->enddate;
+        $date1      = new DateTime($sdate);
+        $date2      = new DateTime($edate);
+        $diff       = date_diff($date1,$date2);
+        $nofdate    = $diff->format("%a");
+        $year       = date('m-Y',strtotime($sdate)); 
 
         /***For Add New Leave Type***/
         if(empty($holidayId))
@@ -48,7 +48,7 @@ class HolidayController extends Controller
             }   
         }else{
          /***For Edit Holiday***/ 
-            $holidaysData               = holidays::find($holidayId);
+            $holidaysData                    = holidays::find($holidayId);
             $holidaysData->holiday_name      = $request->holiname;
             $holidaysData->from_date         = $request->startdate;
             $holidaysData->to_date           = $request->enddate;
