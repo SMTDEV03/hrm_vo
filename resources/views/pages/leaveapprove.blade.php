@@ -80,7 +80,7 @@ use App\Helpers\Helper;
                       $sr = 1;                      
                       @endphp
                       <?php //dd($allLeaveinfo);?>
-                      @foreach ( $allLeaveinfo as $allLeaveinfo )                      
+                      @foreach($allLeaveinfo as $allLeaveinfo )                      
                       <tr>
                         <td>{{$sr}}</td>
                         <td>
@@ -98,11 +98,11 @@ use App\Helpers\Helper;
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       
                         <td><?php echo date('jS \of F Y',strtotime($allLeaveinfo->end_date))?></td>
-                        <?php } else{ ?> 
+                        <?php } else { ?> 
                         <td>-----</td> 
-                        <?php }?>                                             
+                        <?php } ?>                                             
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->apply_date));}}</td>
-                        <td>{{ $allLeaveinfo->leave_type.' ('.$allLeaveinfo->leave_duration. ')'}}</td>
+                        <td>{{$allLeaveinfo->leave_type.' ('.$allLeaveinfo->leave_duration. ')'}}</td>
                         @php
                           if ($allLeaveinfo->leave_status=='Not Approve') {
                             $status ='Not Approve';
@@ -111,10 +111,10 @@ use App\Helpers\Helper;
                           }                                                
                          @endphp
                          @if($user->role == 2) 
-                          <td>{{$status;}}</td>
+                          <td>{{$status}}</td>
                          @endif
                         @if($user->role == 1)                        
-                          <td class="jsgrid-align-center ">                          
+                          <td class="jsgrid-align-center">                          
                             <a onclick="confirm('Are you sure want to Approve?')" href="{{route('admin.approveleave',$allLeaveinfo->id) }}" title="Delete" class="btn btn-info"><?php echo $status?></a>                                                                          
                           </td>
                         @endif                                             

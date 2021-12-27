@@ -83,21 +83,21 @@ use App\Helpers\Helper;
                   </div>
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Department</strong> <br>
+                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Department</strong><br>
                         <p class="text-muted">
                           @php
                           $empdepartment = Helper::getDepartment($profileinfo->department);
                           @endphp
                          {{$empdepartment->department_name}}</p>
                       </div>
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Designation</strong> <br>
+                      <div class="col-lg-4 col-xs-6 b-r"><strong>Designation</strong><br>
                         <p class="text-muted">
                           @php
                           $empdepartment = Helper::getDesignation($profileinfo->designation);
                           @endphp
                          {{$empdepartment->des_name}}</p>
                       </div>
-                      <div class="col-lg-4 col-xs-6 b-r"> <strong>Gender</strong> <br>
+                      <div class="col-lg-4 col-xs-6 b-r"><strong>Gender</strong><br>
                         @php 
                          if($profileinfo->gender=="M"){
                            $gender= 'Male';

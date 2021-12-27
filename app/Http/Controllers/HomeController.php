@@ -30,8 +30,7 @@ class HomeController extends Controller
         return view('user/dashboard');
     }  
 
-    public function employeeList(){
-       
+    public function employeeList(){       
         $users = DB::table('users')
                 ->join('profiles', 'users.id', '=', 'profiles.user_id')
                 ->select('users.*', 'profiles.*')
@@ -42,8 +41,7 @@ class HomeController extends Controller
         return view('pages.employeeList',compact('users'));
     }
                                         
-    public function authinfo()
-    {
+    public function authinfo(){
         $info = auth()->user();
         $logingUserID = $info->id;
         $userinfo = DB::table('users')
@@ -78,12 +76,10 @@ class HomeController extends Controller
             return back()                                                       
             ->with('fail', 'something went wrong');
         }
-
     }
 
     public function updateStatus(request $request, $id){
-        if($request->ajax()){ 
-
+        if($request->ajax()){
             $users = User::find($id);
             if($users->status == 0){
                 $users->status = 1;
