@@ -51,7 +51,6 @@ class HomeController extends Controller
         // is_deleted( 0 = active, 1 = inactive)
         ->where('users.is_deleted', '=', 0)
         ->get();
-
         return $userinfo;
     }
 
