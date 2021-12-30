@@ -90,10 +90,11 @@ use App\Helpers\Helper;
                           {{$leaveType->name}}
                         </td>
                         <td>                        
-                          @php
-                          $userArr = Helper::getemployeeName($allLeaveinfo->user_id);                        
-                         @endphp
-                         {{$userArr[0]->fname}}                         
+                          <?php 
+                          $userArr = Helper::getemployeeName($allLeaveinfo->user_id);
+                          dd($userArr);
+                          die;
+                           ?>                       
                         </td>                        
                         <td>{{date('jS \of F Y',strtotime($allLeaveinfo->start_date));}}</td>
                         <?php if($allLeaveinfo->end_date){?>                       
