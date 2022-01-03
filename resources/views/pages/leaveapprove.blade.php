@@ -79,7 +79,7 @@ use App\Helpers\Helper;
                     @php 
                       $sr = 1;                      
                       @endphp
-                      <?php //dd($allLeaveinfo);?>
+                      <?php dd($allLeaveinfo);?>
                       @foreach($allLeaveinfo as $allLeaveinfo )                      
                       <tr>
                         <td>{{$sr}}</td>
