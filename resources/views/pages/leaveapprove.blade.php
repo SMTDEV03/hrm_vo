@@ -158,7 +158,7 @@ use App\Helpers\Helper;
                         <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
                     </div>
                     <br>
-                </div>
+                  </div>
                   <div class="form-group">
                       <label>Leave Type</label>
                       <select class="form-control custom-select assignleave"  tabindex="1" name="typeid" id="leavetype" required>
