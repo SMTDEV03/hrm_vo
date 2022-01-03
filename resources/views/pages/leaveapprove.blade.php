@@ -147,7 +147,7 @@ use App\Helpers\Helper;
           </div>
           <form method="post" action="{{route('admin.addapplication')}}" id="leaveapply" enctype="multipart/form-data">
             @csrf
-              <div class="modal-body">                  
+                <div class="modal-body">                  
                   <div class="form-group">
                       <label>Employee Name</label> 
                       <input type="text" name="empname" id="empid" value="{{$userinfo[0]->fname.' '. $userinfo[0]->lname}}" class="form-control" readonly>                     
@@ -173,8 +173,7 @@ use App\Helpers\Helper;
                     <label for="radio_2">Full Day</label>
                     <input name="type" type="radio" class="with-gap duration" id="radio_3" data-value="More" value="More than One day">
                     <label for="radio_3">Above a Day</label>
-                </div>
-
+                  </div>
                   <div class="form-group">
                       <label class="control-label" id="hourlyFix">Date</label>
                       <input type="date" name="startdate" class="form-control" id="recipient-name1" required>
@@ -193,7 +192,7 @@ use App\Helpers\Helper;
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Submit</button>
               </div>
-          </form>
+        </form>
       </div>
   </div>
 </div>
