@@ -93,7 +93,6 @@ class LeaveController extends Controller
         ->get();
 
         $allLeaveinfo = employee_application::all();             
-        
         return view('pages.leaveapprove',compact('allLeavetypes','userinfo','allLeaveinfo'));
     }
 
