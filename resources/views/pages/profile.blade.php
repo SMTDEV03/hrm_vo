@@ -93,9 +93,9 @@ use App\Helpers\Helper;
                       <div class="col-lg-4 col-xs-6 b-r"><strong>Designation</strong><br>
                         <p class="text-muted">
                           @php
-                          $empdepartment = Helper::getDesignation($profileinfo->designation);
+                          $empdesignation = Helper::getDesignation($profileinfo->designation);
                           @endphp
-                         {{$empdepartment->des_name}}</p>
+                         {{$empdesignation->des_name}}</p>
                       </div>
                       <div class="col-lg-4 col-xs-6 b-r"><strong>Gender</strong><br>
                         @php 
